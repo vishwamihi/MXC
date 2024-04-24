@@ -88,10 +88,7 @@ if (os.hostname().length == 12) {
 }}}
 
 const ram = `${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)}MB / ${Math.round(require('os').totalmem / 1024 / 1024)}MB`
-const rtime = await runtime(process.uptime())
-
-const txt = `${mg.systemhead}
-
+const rtime = await runtime(process.uptime())`
 ┌───────────────────────
 ├ ⏰ *Uptime:-* ${rtime}
 ├ 📟 *Ram usage:-* ${ram}
