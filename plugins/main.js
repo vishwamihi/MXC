@@ -599,9 +599,7 @@ cmd({
             }
         }
 
-let menu = `${mg.menuhead}
-
-*╭──────────●●►*
+let menu = `*╭──────────●●►*
 *│* *「  MAIN COMMANDS 」*
 *│*   ───────
 *│★* *ᴅᴏᴡɴʟᴏᴀᴅ ᴍᴏᴠɪᴇ:-* "${config.PREFIX}mv"
@@ -617,7 +615,7 @@ let menu = `${mg.menuhead}
                 for (let alias of categories[category][pattern]) {
                    menu += `*│*   *| ${config.PREFIX}${alias}*\n`;
                }
-              menu+= '\n*│*\n'
+              menu+= '*│*\n'
             }
             
                 menu += `*╰───────────●●►*\n`;
