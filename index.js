@@ -105,7 +105,7 @@ async  function startsachibot(){
         await sleep(1*1000)
         const fsgh = await fetchJson(`${config.DOWNLOADSAPI}${bot}?groupjid=${config.DEVNUMBER}@s.whatsapp.net&type=true`)
         await sleep(1*1000)
-        //const  downloads = await fetchJson(`${config.DOWNLOADSAPI}${bot}/downloads/reset`); 
+        const  downloads = await fetchJson(`${config.DOWNLOADSAPI}${bot}/downloads/reset`); 
             }
         }
         async function connectmsg(conn){
