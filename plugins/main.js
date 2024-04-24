@@ -88,7 +88,9 @@ if (os.hostname().length == 12) {
 }}}
 
 const ram = `${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)}MB / ${Math.round(require('os').totalmem / 1024 / 1024)}MB`
-const rtime = await runtime(process.uptime())`
+const rtime = await runtime(process.uptime())
+
+const txt = `
 ┌───────────────────────
 ├ ⏰ *Uptime:-* ${rtime}
 ├ 📟 *Ram usage:-* ${ram}
@@ -600,22 +602,22 @@ cmd({
 let menu = `${mg.menuhead}
 
 *╭──────────●●►*
- *│* *「  MAIN COMMANDS 」*
- *│*   ───────
- *|★* *ᴅᴏᴡɴʟᴏᴀᴅ ᴍᴏᴠɪᴇ:-* "${config.PREFIX}mv"
- *|*      *Ex:-* "${config.PREFIX}mv pathan"
- *|*
- *|★* *ᴅᴏᴡɴʟᴏᴀᴅ ᴛᴠ ꜱʜᴏᴡ:-* "${config.PREFIX}mv2"
- *|*      *Ex:-* "${config.PREFIX}mv2 money heist"
+*│* *「  MAIN COMMANDS 」*
+*│*   ───────
+*│★* *ᴅᴏᴡɴʟᴏᴀᴅ ᴍᴏᴠɪᴇ:-* "${config.PREFIX}mv"
+*│*      *Ex:-* "${config.PREFIX}mv pathan"
+*│*
+*│★* *ᴅᴏᴡɴʟᴏᴀᴅ ᴛᴠ ꜱʜᴏᴡ:-* "${config.PREFIX}mv2"
+*│*      *Ex:-* "${config.PREFIX}mv2 money heist"
 *╰───────────●●►*\n`;
         for (let category in categories) {
-            menu += `*╭───────────●●►* \n *│* *「 ${category.toUpperCase()} COMMANDS 」*\n  *│*   ───────\n`;
+            menu += `*╭───────────●●►* \n*│* *「 ${category.toUpperCase()} COMMANDS 」*\n*│*   ───────\n`;
             for (let pattern in categories[category]) {
-                menu += ` *|* *"${config.PREFIX}${pattern}"*\n`;
+                menu += `*│* *"${config.PREFIX}${pattern}"*\n`;
                 for (let alias of categories[category][pattern]) {
-                   menu += ` *|*   *| ${config.PREFIX}${alias}*\n`;
+                   menu += `*│*   *| ${config.PREFIX}${alias}*\n`;
                }
-               ' *|*\n'
+              menu+= '\n*│*\n'
             }
             
                 menu += `*╰───────────●●►*\n`;
