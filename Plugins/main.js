@@ -616,9 +616,9 @@ let menu = `${mg.menuhead}
                 for (let alias of categories[category][pattern]) {
                     menu += ` *|* - [.${alias}]*\n`;
                 }
-                menu += `*╰───────────●●►*\n`;
             }
             
+                menu += `*╰───────────●●►*\n`;
         }
 menu += `
 ${mg.footer}\n`;
@@ -629,7 +629,7 @@ ${mg.footer}\n`;
         l(e);
     }
 });
-/cmd({
+/*cmd({
     pattern: "menu1",
     react: "〽️",
     alias: ["panel1"],
