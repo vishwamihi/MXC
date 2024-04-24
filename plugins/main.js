@@ -602,20 +602,23 @@ cmd({
 
 let menu = `${mg.menuhead}
 
-*╭───「 MAIN COMMANDS 」───●●►*
- *|★* *ᴅᴏᴡɴʟᴏᴀᴅ ᴍᴏᴠɪᴇ:-* ".mv"
- *|*      *Ex:-* ".mv pathan"
+*╭──────────●●►*
+ *│* *「  MAIN COMMANDS 」*
+ *│*   ───────
+ *|★* *ᴅᴏᴡɴʟᴏᴀᴅ ᴍᴏᴠɪᴇ:-* "${config.PREFIX}mv"
+ *|*      *Ex:-* "${config.PREFIX}mv pathan"
  *|*
- *|★* *ᴅᴏᴡɴʟᴏᴀᴅ ᴛᴠ ꜱʜᴏᴡ:-* ".mv2"
- *|*      *Ex:-* ".mv2 money heist"
+ *|★* *ᴅᴏᴡɴʟᴏᴀᴅ ᴛᴠ ꜱʜᴏᴡ:-* "${config.PREFIX}mv2"
+ *|*      *Ex:-* "${config.PREFIX}mv2 money heist"
 *╰───────────●●►*\n`;
         for (let category in categories) {
-            menu += `*╭───「 ${category.toUpperCase()} Commnds」───●●►*\n`;
+            menu += `*╭───────────●●►* \n *│* *「 ${category.toUpperCase()} COMMANDS 」*\n  *│*   ───────\n`;
             for (let pattern in categories[category]) {
-                menu += ` *|* .${pattern}*\n`;
+                menu += ` *|* *"${config.PREFIX}${pattern}"*\n`;
                 for (let alias of categories[category][pattern]) {
-                    menu += ` *|* - [.${alias}]*\n`;
-                }
+                   menu += ` *|*   *| ${config.PREFIX}${alias}*\n`;
+               }
+               ' *|*\n'
             }
             
                 menu += `*╰───────────●●►*\n`;
