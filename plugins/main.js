@@ -599,7 +599,7 @@ cmd({
             }
         }
 
-let menu = `
+let menu = `${mg.menuhead}
 
 *╭──────────●●►*
 *│* *「  MAIN COMMANDS 」*
