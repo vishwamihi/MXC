@@ -548,7 +548,7 @@ async function sea(conn,chat,mek,q,reply,type,remotejids){
             const seasons = episodesDetails.map((season, index) => {
               const seasonNumber = formatNumber(index + 1); 
               const seasonNumber2 = formatNumber(index + 2); 
-              numrep.push(`${index+2}.1 ${q} ${remotejids}`)
+              numrep.push(`${index+2}.1 .allepies ${q} ${remotejids}`)
               const episodes = season.episodes.map(episode => {
                   const episodeNumberParts = episode.number.split(' - ')
                   const formattedNumber =  formatNumber(parseInt(episodeNumberParts[0].trim())+1)+'.'+formatNumber(parseInt(parseInt(episodeNumberParts[1].trim())+1))
@@ -1262,7 +1262,7 @@ async (conn, mek, m, {from, l, quoted, body, isCmd, command, args, q, isGroup, s
           
           images.forEach(async image => {
             if(chat?.length === 1 && chat[0] === where){
-              const mass = await conn.sendMsg(where , { image: {url : image}, caption: `${config.FOOTERNAME}` }, { quoted: mek });
+              const mass = await conn.sendMsg(where , { image: {url : image.replace('/w300/','/original/')}, caption: `${config.FOOTERNAME}` }, { quoted: mek });
               await conn.sendMsg(where, { react: { text: "📽️", key: mass.key } });
               
             }else{
