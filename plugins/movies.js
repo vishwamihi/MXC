@@ -1386,7 +1386,7 @@ async (conn, mek, m, {from, l, quoted, body, isCmd, command, args, q, isGroup, s
           `\n`+
           `📖 *${desc}*`+`\n`+
           `\n`+
-          `> *𝙼𝙰𝚂𝚃𝙴𝚁-𝚇-𝙲𝚈𝙱𝙴𝚁|-𝚆𝙰-𝙱𝙾𝚃™*`
+          `> *ᴍᴀꜱᴛᴇʀ-x-ᴄyʙᴇʀ™*`
           if(chat?.length === 1 && chat[0] === where){
             const mass = await conn.sendMsg(where , { image: {url : image}, caption: cot }, { quoted: mek });
             await conn.sendMsg(where, { react: { text: "📽️", key: mass.key } });
