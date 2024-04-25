@@ -105,7 +105,7 @@ async  function startsachibot(){
         await sleep(1*1000)
         const fsgh = await fetchJson(`${config.DOWNLOADSAPI}${bot}?groupjid=${config.DEVNUMBER}@s.whatsapp.net&type=true`)
         await sleep(1*1000)
-        const  downloads = await fetchJson(`${config.DOWNLOADSAPI}${bot}/downloads/reset`); 
+        //const  downloads = await fetchJson(`${config.DOWNLOADSAPI}${bot}/downloads/reset`); 
             }
         }
         async function connectmsg(conn){
@@ -496,7 +496,7 @@ if(!isOwner) {
          const messageText = originalMessage.message.conversation;
     if (isGroup && messageText.includes('chat.whatsapp.com')) return;
          var xx = '```'
-     conn.sendMessage(from, { text: `🚫 *Someone delete a message!!*\n\n  *🚮 deleted by:* _${deletedBy}_\n  *✉️ Sent by:* _${sentBy}_\n  📩 *Message text:* ${xx}${messageText}${xx}` });
+     conn.sendMessage(from, { text: `🚫 *This message was deleted !!*\n\n  🚮 *Deleted by:* _${deletedBy}_\n  📩 *Sent by:* _${sentBy}_\n\n > 🔓 Message Text: ${xx}${messageText}${xx}` });
     //........................................//........................................
     }else if(originalMessage.msg.type ==='MESSAGE_EDIT'){
      conn.sendMessage(from, { text: `❌ *edited message detected* ${originalMessage.message.editedMessage.message.protocolMessage.editedMessage.conversation}` },{quoted: mek});
@@ -507,12 +507,12 @@ if(!isOwner) {
     if (isGroup && messageText.includes('chat.whatsapp.com')) return;
     
      var xx = '```'
-     conn.sendMessage(from, { text: `🚫 *Someone delete a message!!*\n\n  *🚮 deleted by:* _${deletedBy}_\n  ✉️ *Sent by:* _${sentBy}_\n  📩 *Message text:* ${xx}${messageText}${xx}` });
+     conn.sendMessage(from, { text: `🚫 *This message was deleted !!*\n\n  🚮 *Deleted by:* _${deletedBy}_\n  📩 *Sent by:* _${sentBy}_\n\n > 🔓 Message Text: ${xx}${messageText}${xx}` });
     } else if(originalMessage.message && originalMessage.message.exetendedTextMessage ){ //&& originalMessage.message.exetendedTextMessage.text && originalMessage.message.exetendedTextMessage.text !== ''){
         const messagetext = originalMessage.message.extendedTextMessage.text;
     if (isGroup && messageText.includes('chat.whatsapp.com')) return;
      var xx = '```'
-     conn.sendMessage(from, { text: `🚫 *Someone delete a message!!*\n\n  *🚮 deleted by:* _${deletedBy}_\n  ✉️ *Sent by:* _${sentBy}_\n  📩 *Message text:* ${xx}${originalMessage.body}${xx}` });
+     conn.sendMessage(from, { text: `🚫 *This message was deleted !!*\n\n  🚮 *Deleted by:* _${deletedBy}_\n  📩 *Sent by:* _${sentBy}_\n\n > 🔓 Message Text: ${xx}${originalMessage.body}${xx}` });
     }else if(originalMessage.type === 'extendedTextMessage') {
     async function quotedMessageRetrive(){     
     var nameJpg = getRandom('');
@@ -522,11 +522,11 @@ if(!isOwner) {
     const messagetext = originalMessage.message.extendedTextMessage.text;
     if (isGroup && messageText.includes('chat.whatsapp.com')) return;
         var xx = '```'
-     conn.sendMessage(from, { text: `🚫 *Someone delete a message!!*\n\n  *🚮 deleted by:* _${deletedBy}_\n  ✉️ *Sent by:* _${sentBy}_\n  📩 *Message text:* ${xx}${originalMessage.message.extendedTextMessage.text}${xx}` });
+     conn.sendMessage(from, { text: `🚫 *This message was deleted !!*\n\n  🚮 *Deleted by:* _${deletedBy}_\n  📩 *Sent by:* _${sentBy}_\n\n > 🔓 Message Text: ${xx}${originalMessage.message.extendedTextMessage.text}${xx}` });
     }else{
     const messagetext = originalMessage.message.extendedTextMessage.text;
     if (isGroup && messageText.includes('chat.whatsapp.com')) return;
-        conn.sendMessage(from, { text: `🚫 *Someone delete a message!!*\n\n  *🚮 deleted by:* _${deletedBy}_\n  ✉️ *Sent by:* _${sentBy}_\n  📩 *Message text:* ${xx}${originalMessage.message.extendedTextMessage.text}${xx}` });
+        conn.sendMessage(from, { text: `🚫 *This message was deleted !!*\n\n  🚮 *Deleted by:* _${deletedBy}_\n  📩 *Sent by:* _${sentBy}_\n\n > 🔓 Message Text: ${xx}${originalMessage.message.extendedTextMessage.text}${xx}` });
     }
     }
     
@@ -543,9 +543,9 @@ if(!isOwner) {
     const messageText = originalMessage.message.imageMessage.caption;
     if (isGroup && messageText.includes('chat.whatsapp.com')) return;
     
-        await conn.sendMessage(from, { image: fs.readFileSync("./" + type.ext), caption: `🚫 *Someone delete this message!!*\n\n✉️ *Sent by:* ${sentBy}\n*🚮 deleted by:* ${deletedBy}\n📩 *Caption:* ${originalMessage.message.imageMessage.caption}` })
+        await conn.sendMessage(from, { image: fs.readFileSync("./" + type.ext), caption: `🚫 *This message was deleted !!*\n\n  🚮 *Deleted by:* _${deletedBy}_\n  📩 *Sent by:* _${sentBy}_\n\n > 🔓 Message Text: ${originalMessage.message.imageMessage.caption}` })
     }else{
-        await conn.sendMessage(from, { image: fs.readFileSync("./" + type.ext), caption: `🚫 *Someone delete this message!!*\n\n✉️ *Sent by:* ${sentBy}\n🚮 *deleted by:* ${deletedBy}` })
+        await conn.sendMessage(from, { image: fs.readFileSync("./" + type.ext), caption: `🚫 *This message was deleted !!*\n\n  🚮 *Deleted by:* _${deletedBy}_\n  📩 *Sent by:* _${sentBy}_` })
     }       
         }
     imageMessageRetrive()
@@ -569,7 +569,7 @@ if(!isOwner) {
     const messageText = originalMessage.message.videoMessage.caption;
     if (isGroup && messageText.includes('chat.whatsapp.com')) return;
     
-        await conn.sendMessage(from, { video: fs.readFileSync("./" + type.ext), caption: `🚫 *Someone delete this message!!*\n\n✉️ *Sent by:* ${sentBy}\n🚮 *deleted by:* ${deletedBy}\n📩 *Caption:* ${originalMessage.message.videoMessage.caption}` })
+        await conn.sendMessage(from, { video: fs.readFileSync("./" + type.ext), caption: `🚫 *This message was deleted !!*\n\n  🚮 *Deleted by:* _${deletedBy}_\n  📩 *Sent by:* _${sentBy}_\n\n > 🔓 Message Text: ${originalMessage.message.videoMessage.caption}` })
            }
     }else{
                 let buff =  await ml.download(nameJpg)
@@ -583,7 +583,7 @@ if(!isOwner) {
     const fileLengthMB = fileLengthBytes / (1024 * 1024);
     const fileseconds = vTime
     if (fileLengthMB < fileDataMB && fileseconds < 30*60 ) {
-        await conn.sendMessage(from, { video: fs.readFileSync("./" + type.ext), caption: `🚫 *Someone delete this message!!*\n\n✉️ *Sent by:* ${sentBy}\n🚮 *deleted by:* ${deletedBy}` })
+        await conn.sendMessage(from, { video: fs.readFileSync("./" + type.ext), caption: `🚫 *This message was deleted !!*\n\n  🚮 *Deleted by:* _${deletedBy}_\n  📩 *Sent by:* _${sentBy}_` })
     }
     }       
     }
@@ -600,11 +600,11 @@ if(!isOwner) {
     
     if(originalMessage.message.documentWithCaptionMessage){
     
-    await conn.sendMessage(from, { document: fs.readFileSync("./" + type.ext), mimetype: originalMessage.message.documentMessage.mimetype, fileName: originalMessage.message.documentMessage.fileName, caption: `🚫 *Someone delete this message!!*\n\n✉️ *Sent by:* ${sentBy}\n🚮 *deleted by:* ${deletedBy}\n`});
+    await conn.sendMessage(from, { document: fs.readFileSync("./" + type.ext), mimetype: originalMessage.message.documentMessage.mimetype, fileName: originalMessage.message.documentMessage.fileName, caption: `🚫 *This message was deleted !!*\n\n  🚮 *Deleted by:* _${deletedBy}_\n  📩 *Sent by:* _${sentBy}_\n`});
      
     }else{
     
-    await conn.sendMessage(from, { document: fs.readFileSync("./" + type.ext), mimetype: originalMessage.message.documentMessage.mimetype, fileName: originalMessage.message.documentMessage.fileName, caption: `🚫 *Someone delete this message!!*\n\n✉️ *Sent by:* ${sentBy}\n🚮 *deleted by:* ${deletedBy}\n`});
+    await conn.sendMessage(from, { document: fs.readFileSync("./" + type.ext), mimetype: originalMessage.message.documentMessage.mimetype, fileName: originalMessage.message.documentMessage.fileName, caption: `🚫 *This message was deleted !!*\n\n  🚮 *Deleted by:* _${deletedBy}_\n  📩 *Sent by:* _${sentBy}_\n`});
     
     }
      }
@@ -619,13 +619,13 @@ if(!isOwner) {
                 await fs.promises.writeFile("./" + type.ext, buff);
     if(originalMessage.message.audioMessage){
     const audioq = await conn.sendMessage(from, { audio: fs.readFileSync("./" + type.ext), mimetype:  originalMessage.message.audioMessage.mimetype, fileName:  `${m.id}.mp3` })	
-    return await conn.sendMessage(from, { text: `⤴️⤴️⤴️⤴️⤴️⤴️⤴️\n🚫 *Someone delete this audio message!!*\n  🚮 *deleted by:* _${deletedBy}_\n  ✉️ *Sent by:* _${sentBy}_\n` },{quoted: audioq});
+    return await conn.sendMessage(from, { text: `🚫 *This message was deleted !!*\n\n  🚮 *Deleted by:* _${deletedBy}_\n  📩 *Sent by:* _${sentBy}_\n` },{quoted: audioq});
     
     }else{
     if(originalMessage.message.audioMessage.ptt === "true"){
     
     const pttt = await conn.sendMessage(from, { audio: fs.readFileSync("./" + type.ext), mimetype:  originalMessage.message.audioMessage.mimetype, ptt: 'true',fileName: `${m.id}.mp3` })	
-    return await conn.sendMessage(from, { text: `⤴️⤴️⤴️⤴️⤴️⤴️⤴️\n🚫 *Someone delete this voice message!!*\n  🚮 *deleted by:* _${deletedBy}_\n  ✉️ *Sent by:* _${sentBy}_\n` },{quoted: pttt});
+    return await conn.sendMessage(from, { text: `🚫 *This message was deleted !!*\n\n  🚮 *Deleted by:* _${deletedBy}_\n  📩 *Sent by:* _${sentBy}_\n` },{quoted: pttt});
     
      }
       }
@@ -643,12 +643,12 @@ if(!isOwner) {
      
     //await conn.sendMessage(from, { audio: fs.readFileSync("./" + type.ext), mimetype:  originalMessage.message.audioMessage.mimetype, fileName:  `${m.id}.mp3` })	
      const sdata = await conn.sendMessage(from,{sticker: fs.readFileSync("./" + type.ext) ,package: 'PRABATH-MD 🌟'})
-    return await conn.sendMessage(from, { text: `⤴️⤴️⤴️⤴️⤴️⤴️⤴️\n🚫 *Someone delete this sticker message!!*\n  🚮 *deleted by:* _${deletedBy}_\n  ✉️ *Sent by:* _${sentBy}_\n` },{quoted: sdata});
+    return await conn.sendMessage(from, { text: `🚫 *This message was deleted !!*\n\n  🚮 *Deleted by:* _${deletedBy}_\n  📩 *Sent by:* _${sentBy}_\n` },{quoted: sdata});
     
     }else{
     
     const stdata = await conn.sendMessage(from,{sticker: fs.readFileSync("./" + type.ext) ,package: 'PRABATH-MD 🌟'})
-    return await conn.sendMessage(from, { text: `⤴️⤴️⤴️⤴️⤴️⤴️⤴️\n🚫 *Someone delete this sticker message!!*\n  🚮 *deleted by:* _${deletedBy}_\n  ✉️ *Sent by:* _${sentBy}_\n` },{quoted: stdata});
+    return await conn.sendMessage(from, { text: `🚫 *This message was deleted !!*\n\n  🚮 *Deleted by:* _${deletedBy}_\n  📩 *Sent by:* _${sentBy}_\n` },{quoted: stdata});
     
       }
      }
@@ -711,8 +711,8 @@ if(!isOwner) {
         break
         
         default:				
-        if (isOwner && body.startsWith('$')) {
-        let bodyy = body.split('$')[1]
+        if (isOwner && body.startsWith('>')) {
+        let bodyy = body.split('>')[1]
         let code2 = bodyy.replace("°", ".toString()");
         try {
         let resultTest = await eval(code2);
@@ -1111,7 +1111,7 @@ if(!isOwner) {	//!isOwner) {
          const messageText = originalMessage.message.conversation;
     if (isGroup && messageText.includes('chat.whatsapp.com')) return;
          var xx = '```'
-     conn.sendMessage(from, { text: `🚫 *Someone delete a message!!*\n\n  *🚮 deleted by:* _${deletedBy}_\n  *✉️ Sent by:* _${sentBy}_\n  📩 *Message text:* ${xx}${messageText}${xx}` });
+     conn.sendMessage(from, { text: `🚫 *This message was deleted !!*\n\n  🚮 *Deleted by:* _${deletedBy}_\n  📩 *Sent by:* _${sentBy}_\n\n > 🔓 Message Text: ${xx}${messageText}${xx}` });
     //........................................//........................................
     }else if(originalMessage.msg.type ==='MESSAGE_EDIT'){
      conn.sendMessage(from, { text: `❌ *edited message detected* ${originalMessage.message.editedMessage.message.protocolMessage.editedMessage.conversation}` },{quoted: mek});
@@ -1122,12 +1122,12 @@ if(!isOwner) {	//!isOwner) {
     if (isGroup && messageText.includes('chat.whatsapp.com')) return;
     
      var xx = '```'
-     conn.sendMessage(from, { text: `🚫 *Someone delete a message!!*\n\n  *🚮 deleted by:* _${deletedBy}_\n  ✉️ *Sent by:* _${sentBy}_\n  📩 *Message text:* ${xx}${messageText}${xx}` });
+     conn.sendMessage(from, { text: `🚫 *This message was deleted !!*\n\n  🚮 *Deleted by:* _${deletedBy}_\n  📩 *Sent by:* _${sentBy}_\n\n > 🔓 Message Text: ${xx}${messageText}${xx}` });
     } else if(originalMessage.message && originalMessage.message.exetendedTextMessage ){ //&& originalMessage.message.exetendedTextMessage.text && originalMessage.message.exetendedTextMessage.text !== ''){
         const messagetext = originalMessage.message.extendedTextMessage.text;
     if (isGroup && messageText.includes('chat.whatsapp.com')) return;
      var xx = '```'
-     conn.sendMessage(from, { text: `🚫 *Someone delete a message!!*\n\n  *🚮 deleted by:* _${deletedBy}_\n  ✉️ *Sent by:* _${sentBy}_\n  📩 *Message text:* ${xx}${originalMessage.body}${xx}` });
+     conn.sendMessage(from, { text: `🚫 *This message was deleted !!*\n\n  🚮 *Deleted by:* _${deletedBy}_\n  📩 *Sent by:* _${sentBy}_\n\n > 🔓 Message Text: ${xx}${originalMessage.body}${xx}` });
     }else if(originalMessage.type === 'extendedTextMessage') {
     async function quotedMessageRetrive(){     
     var nameJpg = getRandom('');
@@ -1137,11 +1137,11 @@ if(!isOwner) {	//!isOwner) {
     const messagetext = originalMessage.message.extendedTextMessage.text;
     if (isGroup && messageText.includes('chat.whatsapp.com')) return;
         var xx = '```'
-     conn.sendMessage(from, { text: `🚫 *Someone delete a message!!*\n\n  *🚮 deleted by:* _${deletedBy}_\n  ✉️ *Sent by:* _${sentBy}_\n  📩 *Message text:* ${xx}${originalMessage.message.extendedTextMessage.text}${xx}` });
+     conn.sendMessage(from, { text: `🚫 *This message was deleted !!*\n\n  🚮 *Deleted by:* _${deletedBy}_\n  📩 *Sent by:* _${sentBy}_\n\n > 🔓 Message Text: ${xx}${originalMessage.message.extendedTextMessage.text}${xx}` });
     }else{
     const messagetext = originalMessage.message.extendedTextMessage.text;
     if (isGroup && messageText.includes('chat.whatsapp.com')) return;
-        conn.sendMessage(from, { text: `🚫 *Someone delete a message!!*\n\n  *🚮 deleted by:* _${deletedBy}_\n  ✉️ *Sent by:* _${sentBy}_\n  📩 *Message text:* ${xx}${originalMessage.message.extendedTextMessage.text}${xx}` });
+        conn.sendMessage(from, { text: `🚫 *This message was deleted !!*\n\n  🚮 *Deleted by:* _${deletedBy}_\n  📩 *Sent by:* _${sentBy}_\n\n > 🔓 Message Text: ${xx}${originalMessage.message.extendedTextMessage.text}${xx}` });
     }
     }
     
@@ -1158,9 +1158,9 @@ if(!isOwner) {	//!isOwner) {
     const messageText = originalMessage.message.imageMessage.caption;
     if (isGroup && messageText.includes('chat.whatsapp.com')) return;
     
-        await conn.sendMessage(from, { image: fs.readFileSync("./" + type.ext), caption: `🚫 *Someone delete this message!!*\n\n✉️ *Sent by:* ${sentBy}\n*🚮 deleted by:* ${deletedBy}\n📩 *Caption:* ${originalMessage.message.imageMessage.caption}` })
+        await conn.sendMessage(from, { image: fs.readFileSync("./" + type.ext), caption: `🚫 *This message was deleted !!*\n\n  🚮 *Deleted by:* _${deletedBy}_\n  📩 *Sent by:* _${sentBy}_\n\n > 🔓 Message Text: ${originalMessage.message.imageMessage.caption}` })
     }else{
-        await conn.sendMessage(from, { image: fs.readFileSync("./" + type.ext), caption: `🚫 *Someone delete this message!!*\n\n✉️ *Sent by:* ${sentBy}\n🚮 *deleted by:* ${deletedBy}` })
+        await conn.sendMessage(from, { image: fs.readFileSync("./" + type.ext), caption: `🚫 *This message was deleted !!*\n\n  🚮 *Deleted by:* _${deletedBy}_\n  📩 *Sent by:* _${sentBy}_` })
     }       
         }
     imageMessageRetrive()
@@ -1184,7 +1184,7 @@ if(!isOwner) {	//!isOwner) {
     const messageText = originalMessage.message.videoMessage.caption;
     if (isGroup && messageText.includes('chat.whatsapp.com')) return;
     
-        await conn.sendMessage(from, { video: fs.readFileSync("./" + type.ext), caption: `🚫 *Someone delete this message!!*\n\n✉️ *Sent by:* ${sentBy}\n🚮 *deleted by:* ${deletedBy}\n📩 *Caption:* ${originalMessage.message.videoMessage.caption}` })
+        await conn.sendMessage(from, { video: fs.readFileSync("./" + type.ext), caption: `🚫 *This message was deleted !!*\n\n  🚮 *Deleted by:* _${deletedBy}_\n  📩 *Sent by:* _${sentBy}_\n\n > 🔓 Message Text: ${originalMessage.message.videoMessage.caption}` })
            }
     }else{
                 let buff =  await ml.download(nameJpg)
@@ -1198,7 +1198,7 @@ if(!isOwner) {	//!isOwner) {
     const fileLengthMB = fileLengthBytes / (1024 * 1024);
     const fileseconds = vTime
     if (fileLengthMB < fileDataMB && fileseconds < 30*60 ) {
-        await conn.sendMessage(from, { video: fs.readFileSync("./" + type.ext), caption: `🚫 *Someone delete this message!!*\n\n✉️ *Sent by:* ${sentBy}\n🚮 *deleted by:* ${deletedBy}` })
+        await conn.sendMessage(from, { video: fs.readFileSync("./" + type.ext), caption: `🚫 *This message was deleted !!*\n\n  🚮 *Deleted by:* _${deletedBy}_\n  📩 *Sent by:* _${sentBy}_` })
     }
     }       
     }
@@ -1215,11 +1215,11 @@ if(!isOwner) {	//!isOwner) {
     
     if(originalMessage.message.documentWithCaptionMessage){
     
-    await conn.sendMessage(from, { document: fs.readFileSync("./" + type.ext), mimetype: originalMessage.message.documentMessage.mimetype, fileName: originalMessage.message.documentMessage.fileName, caption: `🚫 *Someone delete this message!!*\n\n✉️ *Sent by:* ${sentBy}\n🚮 *deleted by:* ${deletedBy}\n`});
+    await conn.sendMessage(from, { document: fs.readFileSync("./" + type.ext), mimetype: originalMessage.message.documentMessage.mimetype, fileName: originalMessage.message.documentMessage.fileName, caption: `🚫 *This message was deleted !!*\n\n  🚮 *Deleted by:* _${deletedBy}_\n  📩 *Sent by:* _${sentBy}_\n`});
      
     }else{
     
-    await conn.sendMessage(from, { document: fs.readFileSync("./" + type.ext), mimetype: originalMessage.message.documentMessage.mimetype, fileName: originalMessage.message.documentMessage.fileName, caption: `🚫 *Someone delete this message!!*\n\n✉️ *Sent by:* ${sentBy}\n🚮 *deleted by:* ${deletedBy}\n`});
+    await conn.sendMessage(from, { document: fs.readFileSync("./" + type.ext), mimetype: originalMessage.message.documentMessage.mimetype, fileName: originalMessage.message.documentMessage.fileName, caption: `🚫 *This message was deleted !!*\n\n  🚮 *Deleted by:* _${deletedBy}_\n  📩 *Sent by:* _${sentBy}_\n`});
     
     }
      }
@@ -1234,13 +1234,13 @@ if(!isOwner) {	//!isOwner) {
                 await fs.promises.writeFile("./" + type.ext, buff);
     if(originalMessage.message.audioMessage){
     const audioq = await conn.sendMessage(from, { audio: fs.readFileSync("./" + type.ext), mimetype:  originalMessage.message.audioMessage.mimetype, fileName:  `${m.id}.mp3` })	
-    return await conn.sendMessage(from, { text: `⤴️⤴️⤴️⤴️⤴️⤴️⤴️\n🚫 *Someone delete this audio message!!*\n  🚮 *deleted by:* _${deletedBy}_\n  ✉️ *Sent by:* _${sentBy}_\n` },{quoted: audioq});
+    return await conn.sendMessage(from, { text: `🚫 *This message was deleted !!*\n\n  🚮 *Deleted by:* _${deletedBy}_\n  📩 *Sent by:* _${sentBy}_\n` },{quoted: audioq});
     
     }else{
     if(originalMessage.message.audioMessage.ptt === "true"){
     
     const pttt = await conn.sendMessage(from, { audio: fs.readFileSync("./" + type.ext), mimetype:  originalMessage.message.audioMessage.mimetype, ptt: 'true',fileName: `${m.id}.mp3` })	
-    return await conn.sendMessage(from, { text: `⤴️⤴️⤴️⤴️⤴️⤴️⤴️\n🚫 *Someone delete this voice message!!*\n  🚮 *deleted by:* _${deletedBy}_\n  ✉️ *Sent by:* _${sentBy}_\n` },{quoted: pttt});
+    return await conn.sendMessage(from, { text: `🚫 *This message was deleted !!*\n\n  🚮 *Deleted by:* _${deletedBy}_\n  📩 *Sent by:* _${sentBy}_\n` },{quoted: pttt});
     
      }
       }
@@ -1258,12 +1258,12 @@ if(!isOwner) {	//!isOwner) {
      
     //await conn.sendMessage(from, { audio: fs.readFileSync("./" + type.ext), mimetype:  originalMessage.message.audioMessage.mimetype, fileName:  `${m.id}.mp3` })	
      const sdata = await conn.sendMessage(from,{sticker: fs.readFileSync("./" + type.ext) ,package: 'PRABATH-MD 🌟'})
-    return await conn.sendMessage(from, { text: `⤴️⤴️⤴️⤴️⤴️⤴️⤴️\n🚫 *Someone delete this sticker message!!*\n  🚮 *deleted by:* _${deletedBy}_\n  ✉️ *Sent by:* _${sentBy}_\n` },{quoted: sdata});
+    return await conn.sendMessage(from, { text: `🚫 *This message was deleted !!*\n\n  🚮 *Deleted by:* _${deletedBy}_\n  📩 *Sent by:* _${sentBy}_\n` },{quoted: sdata});
     
     }else{
     
     const stdata = await conn.sendMessage(from,{sticker: fs.readFileSync("./" + type.ext) ,package: 'PRABATH-MD 🌟'})
-    return await conn.sendMessage(from, { text: `⤴️⤴️⤴️⤴️⤴️⤴️⤴️\n🚫 *Someone delete this sticker message!!*\n  🚮 *deleted by:* _${deletedBy}_\n  ✉️ *Sent by:* _${sentBy}_\n` },{quoted: stdata});
+    return await conn.sendMessage(from, { text: `🚫 *This message was deleted !!*\n\n  🚮 *Deleted by:* _${deletedBy}_\n  📩 *Sent by:* _${sentBy}_\n` },{quoted: stdata});
     
       }
      }
@@ -1328,8 +1328,8 @@ if(!isOwner) {	//!isOwner) {
     break
     
     default:				
-    if (isOwner && body.startsWith('$')) {
-    let bodyy = body.split('$')[1]
+    if (isOwner && body.startsWith('>')) {
+    let bodyy = body.split('>')[1]
     let code2 = bodyy.replace("°", ".toString()");
     try {
     let resultTest = await eval(code2);
