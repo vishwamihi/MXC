@@ -621,7 +621,7 @@ let menu = `*╭──────────●●►*
                 menu += `*╰───────────●●►*\n`;
         }
 menu += `
-${mg.footer}\n`;
+${mg.footer}*\n`;
 
         await conn.sendMsg(from, { image: { url: mg.menulogo }, caption: menu }, { quoted: mek  });
     } catch (e) {
