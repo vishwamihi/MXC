@@ -334,7 +334,7 @@ async function sea(conn,chat,mek,q,reply,type,remotejids){
           
           }
           cot += `\n`+
-          `*${config.FOOTERNAME}*`; 
+          `${config.FOOTERNAME}*`; 
          const where = mek?.key?.remoteJid
          const mydata = await getBuffer(selectedimg);
         
@@ -378,7 +378,7 @@ async function sea(conn,chat,mek,q,reply,type,remotejids){
       `*සිංහල උපසිරස චිත්‍රපටයට ස්ථීරවම එකතු කර ඇත.*`+`\n`+
       `━━━━━━━━━━━━━━━━━━━━━━`+`\n`+
       `\n`+
-      `*${config.FOOTERNAME}*`;
+      `${config.FOOTERNAME}*`;
       const img = showInfo?.imageUrl  ? showInfo.imageUrl : mg.imagenotfound;
       const where = mek?.key?.remoteJid
       if(chat?.length === 1 && chat[0] === where){
@@ -410,7 +410,7 @@ async function sea(conn,chat,mek,q,reply,type,remotejids){
       `*සිංහල උපසිරස චිත්‍රපටයට ස්ථීරවම එකතු කර ඇත.*`+`\n`+
       `━━━━━━━━━━━━━━━━━━━━━━`+`\n`+
       `\n`+
-      `*${config.FOOTERNAME}*`;
+      `${config.FOOTERNAME}*`;
       
       const img = movie?.mainDetails?.imageUrl ? movie.mainDetails.imageUrl : mg.imagenotfound;
       const where = mek?.key?.remoteJid
@@ -442,7 +442,7 @@ async function sea(conn,chat,mek,q,reply,type,remotejids){
       `*සිංහල උපසිරස චිත්‍රපටයට ස්ථීරවම එකතු කර ඇත.*`+`\n`+
       `━━━━━━━━━━━━━━━━━━━━━━`+`\n`+
       `\n`+
-      `*${config.FOOTERNAME}*`;
+      `${config.FOOTERNAME}*`;
       const img =  showInfo?.imageURLs[0] ? config.IMAGE_ENHANCE+showInfo.imageURLs[0].replace('/w300/','/original/') : mg.imagenotfound;
       
       const where = mek?.key?.remoteJid
@@ -477,7 +477,7 @@ async function sea(conn,chat,mek,q,reply,type,remotejids){
       `*සිංහල උපසිරස චිත්‍රපටයට ස්ථීරවම එකතු කර ඇත.*`+`\n`+
       `━━━━━━━━━━━━━━━━━━━━━━`+`\n`+
       `\n`+      
-      `*${config.FOOTERNAME}*`;
+      `${config.FOOTERNAME}*`;
       const img = imageUrls[0] ? config.IMAGE_ENHANCE+imageUrls[0]: mg.imagenotfound;
       
       const where = mek?.key?.remoteJid
@@ -538,7 +538,7 @@ async function sea(conn,chat,mek,q,reply,type,remotejids){
     `\n`+   
     `${seasons}`+  
     `\n`+   
-    `*${config.FOOTERNAME}*`;
+    `${config.FOOTERNAME}*`;
           numrep.push(`1.1 .mvinfo ${q} ${remotejids}`)
           numrep.push(`1.2 .mvimages ${q} ${remotejids}`)
           numrep.push(`1.3 .allepies ${q} ${remotejids}`)
@@ -604,7 +604,7 @@ async function sea(conn,chat,mek,q,reply,type,remotejids){
         `\n`+   
         `${seasons}`+
         `\n`+    
-        `*${config.FOOTERNAME}*`;
+        `${config.FOOTERNAME}*`;
         
           }
           
@@ -654,7 +654,7 @@ async function sea(conn,chat,mek,q,reply,type,remotejids){
       `*"${downloadingMovie.title}"*`+`\n`+
       `${downloadingMovie.url}`+`\n`+
       `──────────────────────────`+`\n`+
-      `*${config.FOOTERNAME}*`
+      `${config.FOOTERNAME}*`
           reply(tete);
           return true;
         }
@@ -783,7 +783,7 @@ async function sea(conn,chat,mek,q,reply,type,remotejids){
         numrep.push(`.dlmovie ${download.link} | ${download.quality} | ${download.size}  ${remotejids}`)
       });
       cot += `\n`+
-  `*${config.FOOTERNAME}*`;
+  `${config.FOOTERNAME}*`;
       
       const where = mek?.key?.remoteJid
       const mydata = await getBuffer(img);
@@ -836,7 +836,7 @@ async function sea(conn,chat,mek,q,reply,type,remotejids){
       });
     }
     cot += `\n`+
-    `*${config.FOOTERNAME}*`;
+    `${config.FOOTERNAME}*`;
     
      const where = mek?.key?.remoteJid
      const mydata = await getBuffer(img);
