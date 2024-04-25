@@ -547,15 +547,16 @@ async function sea(conn,chat,mek,q,reply,type,remotejids){
             const seasonscount =  episodesDetails?.length
             const seasons = episodesDetails.map((season, index) => {
               const seasonNumber = formatNumber(index + 1); 
-              numrep.push(`${index+1}.1 ${q} ${remotejids}`)
+              const seasonNumber2 = formatNumber(index + 2); 
+              numrep.push(`${index+2}.1 ${q} ${remotejids}`)
               const episodes = season.episodes.map(episode => {
                   const episodeNumberParts = episode.number.split(' - ')
-                  const formattedNumber =  formatNumber(parseInt(episodeNumberParts[0].trim())+1)+'.'+formatNumber(parseInt(parseInt(episodeNumberParts[1].trim())))
+                  const formattedNumber =  formatNumber(parseInt(episodeNumberParts[0].trim())+1)+'.'+formatNumber(parseInt(parseInt(episodeNumberParts[1].trim())+1))
                   numrep.push(`${parseInt(episodeNumberParts[0].trim())+1 +'.'+parseInt(parseInt(episodeNumberParts[1].trim())+1)} .ep ${episode.url} ${remotejids}`)
                   return `*${formattedNumber} |❮* ${episode.title}`;
               }).join("\n");
               return `> *──「 Season ${seasonNumber} 」──*`+`\n`+
-              `*${seasonNumber}.01 |❮* All Episodes`+`\n`+
+              `*${seasonNumber2}.01 |❮* All Episodes`+`\n`+
               `${episodes}`+`\n`;
           }).join("\n");
           
@@ -604,18 +605,19 @@ async function sea(conn,chat,mek,q,reply,type,remotejids){
       if(data){
           function formatEpisode(episode) {
               const episodeNumberParts = episode.number.split(' - ');
-              const formattedNumber =  formatNumber(parseInt(episodeNumberParts[0].trim())+1)+'.'+formatNumber(parseInt(parseInt(episodeNumberParts[1].trim())))
+              const formattedNumber =  formatNumber(parseInt(episodeNumberParts[0].trim())+1)+'.'+formatNumber(parseInt(parseInt(episodeNumberParts[1].trim())+1))
               
-                  numrep.push(`${parseInt(episodeNumberParts[0].trim())+1 +'.'+parseInt(parseInt(episodeNumberParts[1].trim()+1))} .ep ${episode.link} ${remotejids}`)
+                  numrep.push(`${parseInt(episodeNumberParts[0].trim())+1 +'.'+parseInt(parseInt(episodeNumberParts[1].trim())+1)} .ep ${episode.link} ${remotejids}`)
                   return `*${formattedNumber} |❮* ${episode.title}`;
           }
           
           function formatSeason(season, index) {
               const episodes = season.episodes.map(formatEpisode).join('\n');
               const seasonNumber = formatNumber(index + 1); 
-              numrep.push(`${index+1}.1 .allepies ${q} ${remotejids}`)
+              const seasonNumbe2 = formatNumber(index + 2); 
+              numrep.push(`${index+2}.1 .allepies ${q} ${remotejids}`)
               return `> *──「 Season ${seasonNumber} 」──*`+`\n`+
-              `*${seasonNumber}.01 |❮* All Episodes`+`\n`+
+              `*${seasonNumber2}.01 |❮* All Episodes`+`\n`+
               `${episodes}`+`\n`;
           }
           
@@ -1382,7 +1384,7 @@ async (conn, mek, m, {from, l, quoted, body, isCmd, command, args, q, isGroup, s
           const genres = data.Genre;
           const country = data.Country;
           const desc = data.Plot;
-          const image = data.Poster.replace('@._V1_SX300','._V1_FMjpg_UY2902_');
+          const image = data.Poster.replace('@._V1_SX300','@._V1_FMjpg_UY2902_');
           let cot =`☘️ *Tιтle : ${title} ${year}*`+`\n`+
           `\n`+
           `📆 *Rᴇʟᴇᴀꜱᴇ ➠ ${date}*`+`\n`+
