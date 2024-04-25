@@ -614,7 +614,7 @@ async function sea(conn,chat,mek,q,reply,type,remotejids){
           function formatSeason(season, index) {
               const episodes = season.episodes.map(formatEpisode).join('\n');
               const seasonNumber = formatNumber(index + 1); 
-              const seasonNumbe2 = formatNumber(index + 2); 
+              const seasonNumber2 = formatNumber(index + 2); 
               numrep.push(`${index+2}.1 .allepies ${q} ${remotejids}`)
               return `> *──「 Season ${seasonNumber} 」──*`+`\n`+
               `*${seasonNumber2}.01 |❮* All Episodes`+`\n`+
@@ -1384,6 +1384,7 @@ async (conn, mek, m, {from, l, quoted, body, isCmd, command, args, q, isGroup, s
           const genres = data.Genre;
           const country = data.Country;
           const desc = data.Plot;
+          const cast = data.Actors;
           const image = data.Poster.replace('@._V1_SX300','@._V1_FMjpg_UY2902_');
           let cot =`☘️ *Tιтle : ${title} ${year}*`+`\n`+
           `\n`+
@@ -1394,6 +1395,7 @@ async (conn, mek, m, {from, l, quoted, body, isCmd, command, args, q, isGroup, s
           `🎥 *Dɪʀᴇᴄᴛᴏʀ ➠ ${director}*`+`\n`+
           `📕 *Gᴇɴʀᴇs ➠ ${genres}*`+`\n`+
           `🌎 *Cᴏᴜɴᴛʀʏ ➠ ${country}*`+`\n`+
+          `💃 *Cᴀꜱᴛ ➠ ${cast}*`+`\n`+
           `\n`+
           `📖 *${desc}*`+`\n`+
           `\n`+
