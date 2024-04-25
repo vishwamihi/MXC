@@ -6,6 +6,36 @@ const cine = require('../lib/cine');
 const sinsub = require('../lib/sinsub');
 const  bot = config.BOTNUMBER;
 const fg = require('api-dylux');
+const axios =require('axios')
+const getFileNameFromUrl = (url) => {
+  const urlParts = url.split('/');
+  const fileNameWithExtension = decodeURIComponent(urlParts[urlParts.length - 1]);
+  const lastDotIndex = fileNameWithExtension.lastIndexOf('.');
+  const fileNameWithoutExtension = fileNameWithExtension.slice(0, lastDotIndex);
+  return fileNameWithoutExtension;
+};
+
+const getFileInfo = async (url, options) => {
+  try {
+      options = options || {};
+      const res = await axios({
+          method: 'head', // Use 'head' method to retrieve only headers
+          url,
+          headers: {
+              'DNT': 1,
+              'Upgrade-Insecure-Request': 1
+          },
+          ...options
+      });
+
+      const fileSize = res.headers['content-length']; // Extract file size from content-length header
+      const fileName = getFileNameFromUrl(url); // Extract file name from URL
+      return { fileSize, fileName };
+  } catch (e) {
+      console.error(e);
+      return null;
+  }
+};
 let downloadingMovie = null;
 const { storenumrepdata } = require('../lib/numrepstore')
 function formatNumber(num) {
@@ -257,7 +287,7 @@ async function sea(conn,chat,mek,q,reply,type,remotejids){
           downloads.forEach((download, index) => {
           cot += `*${formatNumber(index + 3)} |❮* ${download.quality} (${download.size})`+
           `\n`; 
-          numrep.push(`.dlmovie ${download.link} | ${download.quality} | ${download.size} ${remotejids}`)
+          numrep.push(`.dlmovie ${download.link} ${remotejids}`)
           });
           cot += `\n`+
           `${config.FOOTERNAME}*`; 
@@ -328,7 +358,7 @@ async function sea(conn,chat,mek,q,reply,type,remotejids){
               if (download && download.link) {      
               cot += `*${formatNumber(index + 3)} |❮* ${download.quality} (${download.size})`+
               `\n`;    
-              numrep.push(`.dlmovie ${download.link} | ${download.quality} | ${download.size}  ${remotejids}`)          
+              numrep.push(`.dlmovie ${download.link} ${remotejids}`)          
               }         
             });         
           
@@ -780,7 +810,7 @@ async function sea(conn,chat,mek,q,reply,type,remotejids){
       const downloads = dataAfterSachibot?.dllinks?.directDownloadLinks
       downloads.forEach((download, index) => {
         cot += `*${formatNumber(index + 1)} |❮* ${download.quality} (${download.size})\n`;
-        numrep.push(`.dlmovie ${download.link} | ${download.quality} | ${download.size}  ${remotejids}`)
+        numrep.push(`.dlmovie ${download.link} ${remotejids}`)
       });
       cot += `\n`+
   `${config.FOOTERNAME}*`;
@@ -831,7 +861,7 @@ async function sea(conn,chat,mek,q,reply,type,remotejids){
       downloads.forEach((download, index) => {
     if (download && download.link) {
         cot += `*${formatNumber(index + 1)} |❮* ${download.quality} (${download.size})\n`;
-        numrep.push(`.dlmovie ${download.link} | ${download.quality} | ${download.size}  ${remotejids}`)
+        numrep.push(`.dlmovie ${download.link} ${remotejids}`)
     }
       });
     }
@@ -878,8 +908,7 @@ cmd({
         if(isGroup){
           const fsh = await fetchJson(`${config.DOWNLOADSAPI}${bot}/${from}?${sinsub.apikey}${config.DEVAPIKEY}`); 
           if(fsh &&  (fsh?.error || fsh?.data?.type == 'false')) return;
-        const fsghh = await fetchJson(`${config.DOWNLOADSAPI}${bot}/group?groupjid=${sender}&sender=${sender}?${sinsub.apikey}${config.DEVAPIKEY}`); 
-        if(fsghh &&  (fsghh?.error || fsghh?.upcomingDate == 'false')) return;
+         
         chat.push(m.chat);
           p = q;
 
@@ -935,8 +964,7 @@ async (conn, mek, m, {from, l, quoted, body, isCmd, command, args, q, isGroup, s
       if(isGroup){
         const fsh = await fetchJson(`${config.DOWNLOADSAPI}${bot}/${from}?${sinsub.apikey}${config.DEVAPIKEY}`); 
           if(fsh &&  (fsh?.error || fsh?.data?.type == 'false')) return;
-        const fsghh = await fetchJson(`${config.DOWNLOADSAPI}${bot}/group?groupjid=${sender}&sender=${sender}?${sinsub.apikey}${config.DEVAPIKEY}`); 
-        if(fsghh &&  (fsghh?.error || fsghh?.upcomingDate == 'false')) return;
+         
 chat.push(m.chat);
         p = q;
 
@@ -992,8 +1020,7 @@ async (conn, mek, m, {from, l, quoted, body, isCmd, command, args, q, isGroup, s
         if(isGroup){
           const fsh = await fetchJson(`${config.DOWNLOADSAPI}${bot}/${from}?${sinsub.apikey}${config.DEVAPIKEY}`); 
           if(fsh &&  (fsh?.error || fsh?.data?.type == 'false')) return;
-        const fsghh = await fetchJson(`${config.DOWNLOADSAPI}${bot}/group?groupjid=${sender}&sender=${sender}?${sinsub.apikey}${config.DEVAPIKEY}`); 
-        if(fsghh &&  (fsghh?.error || fsghh?.upcomingDate == 'false')) return;
+         
         chat.push(m.chat);
           p = q;
           me= false
@@ -1011,8 +1038,8 @@ async (conn, mek, m, {from, l, quoted, body, isCmd, command, args, q, isGroup, s
             let url;
           let parts = p.split('|')
           p = parts[0]
-          const quality = parts[1]? parts[1] :''
-          const size = parts[2]? parts[2]:''
+          title = parts[1]? parts[1] : null
+          let size;
 
 async function dlmovie(){
   if(p.startsWith(`${cine.site}`)){
@@ -1024,9 +1051,15 @@ async function dlmovie(){
    }
     const dl_data = await fetchJson(`${cine.api}${cine.cinedllink}${p}?${sinsub.apikey}${config.DEVAPIKEY}`);
       if(response?.result?.data?.mainDetails?.maintitle){
+        if(title === null){
           title = response?.result?.data?.mainDetails?.maintitle
+
+        }
+         
       } else if(response?.result?.data?.mainDetails?.title){
-        title = response?.result?.data?.mainDetails?.title
+        if(title === null){
+          title = response?.result?.data?.mainDetails?.title
+        }
     }
       if(dl_data?.result?.data?.dllink){
           url= dl_data?.result?.data?.dllink
@@ -1040,22 +1073,32 @@ if(p.startsWith(`${sinsub.site}${sinsub.movie}`)){
 }
 const dl_data = await fetchJson(`${sinsub.api}${sinsub.sinsubdllink}${p}&${sinsub.apikey}${config.DEVAPIKEY}`);
   if(response?.movied?.title){
+    if(title === null){
       title = response?.movied?.title
+    }
   }else if(Array.isArray(response?.movied)){
     const linkItem = response.movied.find(item => item.episodeLink === link);
-    title = linkItem.episodeTitle + '[' + linkItem.episode+']'
+    if(title === null){
+      title = linkItem.episodeTitle + '[' + linkItem.episode+']'
+    }
 }
   if(dl_data?.movied?.link){
       url= dl_data?.movied?.link
 }
 }
+
+
+const { fileSize, fileName }  = getFileInfo(url)
+if(title === undefined || title === null){
+  title = fileName
+}
+size = fileSize
 const caption= `${title} ${mg.jointitleandqualitydl} ${quality}\n${size} \n\n${mg.footer}`
 
 await moviesend(reply,title, caption, url, conn, mek, chat)
 
 }
 
-if(size !== ''){
   const sse = checkSizeAndReply(size);
   if(sse && sse===`True`){
     await dlmovie()
@@ -1074,10 +1117,7 @@ ${mg.footer}`);
 }else{
 return await reply('Got an error while checking size')
 }
-}else{
-  await reply(`The bot will restart if the size of the downloaded item exceeds the maximum limit ( ${config.MAX_SIZE} ) since the size could not be determined.`)
-  await dlmovie()
-}
+
         }
     } catch (e) {
         console.log(e);  
@@ -1104,8 +1144,7 @@ async (conn, mek, m, {from, l, quoted, body, isCmd, command, args, q, isGroup, s
       if(isGroup){
         const fsh = await fetchJson(`${config.DOWNLOADSAPI}${bot}/${from}?${sinsub.apikey}${config.DEVAPIKEY}`); 
         if(fsh &&  (fsh?.error || fsh?.data?.type == 'false')) return;
-        const fsghh = await fetchJson(`${config.DOWNLOADSAPI}${bot}/group?groupjid=${sender}&sender=${sender}?${sinsub.apikey}${config.DEVAPIKEY}`); 
-        if(fsghh &&  (fsghh?.error || fsghh?.upcomingDate == 'false')) return;
+         
          chat.push(m.chat);
         p = q;
         
@@ -1164,8 +1203,7 @@ async (conn, mek, m, {from, l, quoted, body, isCmd, command, args, q, isGroup, s
       if(isGroup){
         const fsh = await fetchJson(`${config.DOWNLOADSAPI}${bot}/${from}?${sinsub.apikey}${config.DEVAPIKEY}`); 
         if(fsh &&  (fsh?.error || fsh?.data?.type == 'false')) return;
-        const fsghh = await fetchJson(`${config.DOWNLOADSAPI}${bot}/group?groupjid=${sender}&sender=${sender}?${sinsub.apikey}${config.DEVAPIKEY}`); 
-        if(fsghh &&  (fsghh?.error || fsghh?.upcomingDate == 'false')) return;
+         
       chat.push(m.chat);
         p = q;
         me= false
@@ -1249,8 +1287,7 @@ async (conn, mek, m, {from, l, quoted, body, isCmd, command, args, q, isGroup, s
       if(isGroup){
         const fsh = await fetchJson(`${config.DOWNLOADSAPI}${bot}/${from}?${sinsub.apikey}${config.DEVAPIKEY}`); 
         if(fsh &&  (fsh?.error || fsh?.data?.type == 'false')) return;
-        const fsghh = await fetchJson(`${config.DOWNLOADSAPI}${bot}/group?groupjid=${sender}&sender=${sender}?${sinsub.apikey}${config.DEVAPIKEY}`); 
-        if(fsghh &&  (fsghh?.error || fsghh?.upcomingDate == 'false')) return;
+         
       chat.push(m.chat);
         p = q;
         me= false
@@ -1307,8 +1344,7 @@ async (conn, mek, m, {from, l, quoted, body, isCmd, command, args, q, isGroup, s
       if(isGroup){
         const fsh = await fetchJson(`${config.DOWNLOADSAPI}${bot}/${from}?${sinsub.apikey}${config.DEVAPIKEY}`); 
         if(fsh &&  (fsh?.error || fsh?.data?.type == 'false')) return;
-        const fsghh = await fetchJson(`${config.DOWNLOADSAPI}${bot}/group?groupjid=${sender}&sender=${sender}?${sinsub.apikey}${config.DEVAPIKEY}`); 
-        if(fsghh &&  (fsghh?.error || fsghh?.upcomingDate == 'false')) return;
+         
       chat.push(m.chat);
         p = q;
         me= false
@@ -1411,8 +1447,7 @@ async (conn, mek, m, {from, l, quoted, body, isCmd, command, args, q, isGroup, s
       if(isGroup){
         const fsh = await fetchJson(`${config.DOWNLOADSAPI}${bot}/${from}?${sinsub.apikey}${config.DEVAPIKEY}`); 
         if(fsh &&  (fsh?.error || fsh?.data?.type == 'false')) return;
-        const fsghh = await fetchJson(`${config.DOWNLOADSAPI}${bot}/group?groupjid=${sender}&sender=${sender}?${sinsub.apikey}${config.DEVAPIKEY}`); 
-        if(fsghh &&  (fsghh?.error || fsghh?.upcomingDate == 'false')) return;
+         
       chat.push(m.chat);
         p = q;
         me= false
@@ -1451,7 +1486,7 @@ async (conn, mek, m, {from, l, quoted, body, isCmd, command, args, q, isGroup, s
 });
 
 cmd({
-  alias: ["allepies'"],
+  alias: ["allepies"],
   react: '📑',
   desc: "Download all episodes.",
   category: "movie",
@@ -1468,8 +1503,7 @@ async (conn, mek, m, {from, l, quoted, body, isCmd, command, args, q, isGroup, s
       if(isGroup){
         const fsh = await fetchJson(`${config.DOWNLOADSAPI}${bot}/${from}?${sinsub.apikey}${config.DEVAPIKEY}`); 
         if(fsh &&  (fsh?.error || fsh?.data?.type == 'false')) return;
-        const fsghh = await fetchJson(`${config.DOWNLOADSAPI}${bot}/group?groupjid=${sender}&sender=${sender}?${sinsub.apikey}${config.DEVAPIKEY}`); 
-        if(fsghh &&  (fsghh?.error || fsghh?.upcomingDate == 'false')) return;
+         
       chat.push(m.chat);
         p = q;
         me= false

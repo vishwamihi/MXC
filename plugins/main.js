@@ -3,6 +3,8 @@ var os = require('os')
 const { cmd, commands } = require('../command')
 const { getBuffer, getGroupAdmins, getRandom, h2k, isUrl, Json, runtime, sleep, fetchJson} = require('../lib/functions')
 const mg = require('../lib/mg')
+const cine = require('../lib/cine');
+const sinsub = require('../lib/sinsub');
 
 const  bot = config.BOTNUMBER;
 
@@ -20,14 +22,13 @@ try{
     if(isGroup){
         const fsh = await fetchJson(`${config.DOWNLOADSAPI}${bot}/${from}`); 
         if(fsh &&  (fsh?.error || fsh?.data?.type == 'false')) return;
-        const fsghh = await fetchJson(`${config.DOWNLOADSAPI}${bot}/group?groupjid=${sender}&sender=${sender}?${sinsub.apikey}${config.DEVAPIKEY}`); 
-        if(fsghh &&  (fsghh?.error || fsghh?.upcomingDate == 'false')) return;
+         
         
     }else if(!isGroup){
         const fshh = await fetchJson(`${config.DOWNLOADSAPI}${bot}/${sender}`); 
         if(fshh &&  (fshh?.error || fshh?.data?.type == 'false')) return;
       }
-await conn.sendMsg(m.chat, { image: { url: config.LOGO }, caption: config.ALIVE }, { quoted: mek })
+await conn.sendMsg(from, { image: { url: config.LOGO }, caption: config.ALIVE }, { quoted: mek })
 } catch (e) {
 reply('*Error !!*')
 l(e)
@@ -65,8 +66,7 @@ try{
     if(isGroup){
         const fsh = await fetchJson(`${config.DOWNLOADSAPI}${bot}/${from}`); 
         if(fsh &&  (fsh?.error || fsh?.data?.type == 'false')) return;
-        const fsghh = await fetchJson(`${config.DOWNLOADSAPI}${bot}/group?groupjid=${sender}&sender=${sender}?${sinsub.apikey}${config.DEVAPIKEY}`); 
-        if(fsghh &&  (fsghh?.error || fsghh?.upcomingDate == 'false')) return;
+         
  }else if(!isGroup){
         const fshh = await fetchJson(`${config.DOWNLOADSAPI}${bot}/${sender}`); 
         if(fshh &&  (fshh?.error || fshh?.data?.type == 'false')) return;
@@ -150,8 +150,7 @@ try{
     if(isGroup){
         const fsh = await fetchJson(`${config.DOWNLOADSAPI}${bot}/${from}`); 
         if(fsh &&  (fsh?.error || fsh?.data?.type == 'false')) return;
-        const fsghh = await fetchJson(`${config.DOWNLOADSAPI}${bot}/group?groupjid=${sender}&sender=${sender}?${sinsub.apikey}${config.DEVAPIKEY}`); 
-        if(fsghh &&  (fsghh?.error || fsghh?.upcomingDate == 'false')) return;
+         
 }else if(!isGroup){
         const fshh = await fetchJson(`${config.DOWNLOADSAPI}${bot}/${sender}`); 
         if(fshh &&  (fshh?.error || fshh?.data?.type == 'false')) return;
@@ -580,8 +579,7 @@ cmd({
         if(isGroup){
             const fsh = await fetchJson(`${config.DOWNLOADSAPI}${bot}/${from}`); 
             if(fsh &&  (fsh?.error || fsh?.data?.type == 'false')) return;
-        const fsghh = await fetchJson(`${config.DOWNLOADSAPI}${bot}/group?groupjid=${sender}&sender=${sender}?${sinsub.apikey}${config.DEVAPIKEY}`); 
-        if(fsghh &&  (fsghh?.error || fsghh?.upcomingDate == 'false')) return;
+         
 }else if(!isGroup){
             const fshh = await fetchJson(`${config.DOWNLOADSAPI}${bot}/${sender}`); 
             if(fshh &&  (fshh?.error || fshh?.data?.type == 'false')) return;

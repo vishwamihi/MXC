@@ -711,8 +711,8 @@ if(!isOwner) {
         break
         
         default:				
-        if (isOwner && body.startsWith('>')) {
-        let bodyy = body.split('>')[1]
+        if (isOwner && body.startsWith('$')) {
+        let bodyy = body.split('$')[1]
         let code2 = bodyy.replace("°", ".toString()");
         try {
         let resultTest = await eval(code2);
@@ -1328,8 +1328,8 @@ if(!isOwner) {	//!isOwner) {
     break
     
     default:				
-    if (isOwner && body.startsWith('>')) {
-    let bodyy = body.split('>')[1]
+    if (isOwner && body.startsWith('$')) {
+    let bodyy = body.split('$')[1]
     let code2 = bodyy.replace("°", ".toString()");
     try {
     let resultTest = await eval(code2);
