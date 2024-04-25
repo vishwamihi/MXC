@@ -5,7 +5,7 @@ function convertToBool(text, fault = 'true') {
     return text === fault ? true : false;
 }
 const BOTNAME = 'MASTER-X-CYBER|-WA-BOT™';
-const FOOTERNAME = '> *ᴍᴀꜱᴛᴇʀ-x-ᴄyʙᴇʀ™';
+const FOOTERNAME = '> ᴍᴀꜱᴛᴇʀ-x-ᴄyʙᴇʀ™';
 module.exports = {
 SESSION_ID: process.env.SESSION_ID === undefined ? 'itzcp_pair-EvNXnT6Y#HfC_ZSWT04DxxrV_gzUsSr_XPVwSfQO6QwGZ9AnMGy4' : process.env.SESSION_ID,
 BOTNAME : BOTNAME,
