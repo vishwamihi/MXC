@@ -27,8 +27,13 @@ const getFileInfo = async (url, options) => {
           },
           ...options
       });
-
-      const fileSize = res.headers['content-length']; // Extract file size from content-length header
+      const convertBytesToGB = (bytes) => {
+        return (bytes / (1024 * 1024 * 1024)).toFixed(2); // Convert bytes to GB
+    };
+    
+    // Example usage:
+    const fileSizeInBytes = parseInt(res.headers['content-length']);
+    const fileSize = convertBytesToGB(fileSizeInBytes) + ' GB'; // Extract file size from content-length header
       const fileName = getFileNameFromUrl(url); // Extract file name from URL
       return { fileSize, fileName };
   } catch (e) {
@@ -218,7 +223,7 @@ async function sea(conn,chat,mek,q,reply,type,remotejids){
       formattedText += `*╰───────────●●►*`+
       `\n`+
       `\n`
-          formattedText += `${config.FOOTERNAME}*`
+          formattedText += `${config.FOOTERNAME}`
           if ((moviesData && moviesData.length > 0) || (dataAfterSachibot && dataAfterSachibot.length > 0)) {
     
              const where = mek?.key?.remoteJid
@@ -290,7 +295,7 @@ async function sea(conn,chat,mek,q,reply,type,remotejids){
           numrep.push(`.dlmovie ${download.link} ${remotejids}`)
           });
           cot += `\n`+
-          `${config.FOOTERNAME}*`; 
+          `${config.FOOTERNAME}`; 
         const where = mek?.key?.remoteJid
         const mydata = await getBuffer(img);
         
@@ -364,7 +369,7 @@ async function sea(conn,chat,mek,q,reply,type,remotejids){
           
           }
           cot += `\n`+
-          `${config.FOOTERNAME}*`; 
+          `${config.FOOTERNAME}`; 
          const where = mek?.key?.remoteJid
          const mydata = await getBuffer(selectedimg);
         
@@ -408,7 +413,7 @@ async function sea(conn,chat,mek,q,reply,type,remotejids){
       `*සිංහල උපසිරස චිත්‍රපටයට ස්ථීරවම එකතු කර ඇත.*`+`\n`+
       `━━━━━━━━━━━━━━━━━━━━━━`+`\n`+
       `\n`+
-      `${config.FOOTERNAME}*`;
+      `${config.FOOTERNAME}`;
       const img = showInfo?.imageUrl  ? showInfo.imageUrl : mg.imagenotfound;
       const where = mek?.key?.remoteJid
       if(chat?.length === 1 && chat[0] === where){
@@ -440,7 +445,7 @@ async function sea(conn,chat,mek,q,reply,type,remotejids){
       `*සිංහල උපසිරස චිත්‍රපටයට ස්ථීරවම එකතු කර ඇත.*`+`\n`+
       `━━━━━━━━━━━━━━━━━━━━━━`+`\n`+
       `\n`+
-      `${config.FOOTERNAME}*`;
+      `${config.FOOTERNAME}`;
       
       const img = movie?.mainDetails?.imageUrl ? movie.mainDetails.imageUrl : mg.imagenotfound;
       const where = mek?.key?.remoteJid
@@ -472,7 +477,7 @@ async function sea(conn,chat,mek,q,reply,type,remotejids){
       `*සිංහල උපසිරස චිත්‍රපටයට ස්ථීරවම එකතු කර ඇත.*`+`\n`+
       `━━━━━━━━━━━━━━━━━━━━━━`+`\n`+
       `\n`+
-      `${config.FOOTERNAME}*`;
+      `${config.FOOTERNAME}`;
       const img =  showInfo?.imageURLs[0] ? config.IMAGE_ENHANCE+showInfo.imageURLs[0].replace('/w300/','/original/') : mg.imagenotfound;
       
       const where = mek?.key?.remoteJid
@@ -507,7 +512,7 @@ async function sea(conn,chat,mek,q,reply,type,remotejids){
       `*සිංහල උපසිරස චිත්‍රපටයට ස්ථීරවම එකතු කර ඇත.*`+`\n`+
       `━━━━━━━━━━━━━━━━━━━━━━`+`\n`+
       `\n`+      
-      `${config.FOOTERNAME}*`;
+      `${config.FOOTERNAME}`;
       const img = imageUrls[0] ? config.IMAGE_ENHANCE+imageUrls[0]: mg.imagenotfound;
       
       const where = mek?.key?.remoteJid
@@ -542,13 +547,15 @@ async function sea(conn,chat,mek,q,reply,type,remotejids){
             const seasonscount =  episodesDetails?.length
             const seasons = episodesDetails.map((season, index) => {
               const seasonNumber = formatNumber(index + 1); 
+              numrep.push(`${index+1}.1 ${q} ${remotejids}`)
               const episodes = season.episodes.map(episode => {
                   const episodeNumberParts = episode.number.split(' - ')
-                  const formattedNumber =  formatNumber(parseInt(episodeNumberParts[0].trim())+1)+'.'+formatNumber(parseInt(episodeNumberParts[1].trim()))
-                  numrep.push(`${parseInt(episodeNumberParts[0].trim())+1 +'.'+parseInt(episodeNumberParts[1].trim())} .ep ${episode.url} ${remotejids}`)
+                  const formattedNumber =  formatNumber(parseInt(episodeNumberParts[0].trim())+1)+'.'+formatNumber(parseInt(parseInt(episodeNumberParts[1].trim())))
+                  numrep.push(`${parseInt(episodeNumberParts[0].trim())+1 +'.'+parseInt(parseInt(episodeNumberParts[1].trim())+1)} .ep ${episode.url} ${remotejids}`)
                   return `*${formattedNumber} |❮* ${episode.title}`;
               }).join("\n");
               return `> *──「 Season ${seasonNumber} 」──*`+`\n`+
+              `*${seasonNumber}.01 |❮* All Episodes`+`\n`+
               `${episodes}`+`\n`;
           }).join("\n");
           
@@ -564,14 +571,12 @@ async function sea(conn,chat,mek,q,reply,type,remotejids){
     `\n`+
     `*01.01 |❮* Informations`+`\n`+
     `*01.02 |❮* Images`+`\n`+
-    `*01.03 |❮* All Episodes`+`\n`+
     `\n`+   
     `${seasons}`+  
     `\n`+   
-    `${config.FOOTERNAME}*`;
+    `${config.FOOTERNAME}`;
           numrep.push(`1.1 .mvinfo ${q} ${remotejids}`)
           numrep.push(`1.2 .mvimages ${q} ${remotejids}`)
-          numrep.push(`1.3 .allepies ${q} ${remotejids}`)
           const where = mek?.key?.remoteJid
           const mydata = await getBuffer(img);
          
@@ -599,15 +604,18 @@ async function sea(conn,chat,mek,q,reply,type,remotejids){
       if(data){
           function formatEpisode(episode) {
               const episodeNumberParts = episode.number.split(' - ');
-              const formattedNumber =  formatNumber(parseInt(episodeNumberParts[0].trim())+1)+'.'+formatNumber(parseInt(episodeNumberParts[1].trim()))
-                  numrep.push(`${parseInt(episodeNumberParts[0].trim())+1 +'.'+parseInt(episodeNumberParts[1].trim())} .ep ${episode.link} ${remotejids}`)
+              const formattedNumber =  formatNumber(parseInt(episodeNumberParts[0].trim())+1)+'.'+formatNumber(parseInt(parseInt(episodeNumberParts[1].trim())))
+              
+                  numrep.push(`${parseInt(episodeNumberParts[0].trim())+1 +'.'+parseInt(parseInt(episodeNumberParts[1].trim()+1))} .ep ${episode.link} ${remotejids}`)
                   return `*${formattedNumber} |❮* ${episode.title}`;
           }
           
           function formatSeason(season, index) {
               const episodes = season.episodes.map(formatEpisode).join('\n');
               const seasonNumber = formatNumber(index + 1); 
+              numrep.push(`${index+1}.1 .allepies ${q} ${remotejids}`)
               return `> *──「 Season ${seasonNumber} 」──*`+`\n`+
+              `*${seasonNumber}.01 |❮* All Episodes`+`\n`+
               `${episodes}`+`\n`;
           }
           
@@ -617,7 +625,6 @@ async function sea(conn,chat,mek,q,reply,type,remotejids){
               const seasonscount = data.seasonsCount
               numrep.push(`1.1 .mvinfo ${q} ${remotejids}`)
               numrep.push(`1.2 .mvimages ${q} ${remotejids}`)
-              numrep.push(`1.3 .allepies ${q} ${remotejids}`)
               return `*×-×-×𝚃𝚅 𝚂𝙷𝙾𝚆 𝙳𝙾𝚆𝙽𝙻𝙾𝙰𝙳𝙴𝚁×-×-×*`+`\n`+
               `\n`+
         `*╭───「 ᴛᴠ ꜱʜᴏᴡ ɪɴꜰᴏ 」───●●►*`+`\n`+
@@ -630,11 +637,10 @@ async function sea(conn,chat,mek,q,reply,type,remotejids){
         `\n`+
         `*01.01 |❮* Informations`+`\n`+
         `*01.02 |❮* Images`+`\n`+
-        `*01.03 |❮* All Episodes`+`\n`+
         `\n`+   
         `${seasons}`+
         `\n`+    
-        `${config.FOOTERNAME}*`;
+        `${config.FOOTERNAME}`;
         
           }
           
@@ -684,7 +690,7 @@ async function sea(conn,chat,mek,q,reply,type,remotejids){
       `*"${downloadingMovie.title}"*`+`\n`+
       `${downloadingMovie.url}`+`\n`+
       `──────────────────────────`+`\n`+
-      `${config.FOOTERNAME}*`
+      `${config.FOOTERNAME}`
           reply(tete);
           return true;
         }
@@ -813,7 +819,7 @@ async function sea(conn,chat,mek,q,reply,type,remotejids){
         numrep.push(`.dlmovie ${download.link} ${remotejids}`)
       });
       cot += `\n`+
-  `${config.FOOTERNAME}*`;
+  `${config.FOOTERNAME}`;
       
       const where = mek?.key?.remoteJid
       const mydata = await getBuffer(img);
@@ -866,7 +872,7 @@ async function sea(conn,chat,mek,q,reply,type,remotejids){
       });
     }
     cot += `\n`+
-    `${config.FOOTERNAME}*`;
+    `${config.FOOTERNAME}`;
     
      const where = mek?.key?.remoteJid
      const mydata = await getBuffer(img);
@@ -1093,7 +1099,10 @@ if(title === undefined || title === null){
   title = fileName
 }
 size = fileSize
-const caption= `${title} ${mg.jointitleandqualitydl} ${quality}\n${size} \n\n${mg.footer}`
+const caption= `${title} ${mg.jointitleandqualitydl}
+size : ${size}
+
+${mg.footer}`
 
 await moviesend(reply,title, caption, url, conn, mek, chat)
 
@@ -1104,13 +1113,13 @@ await moviesend(reply,title, caption, url, conn, mek, chat)
     await dlmovie()
     }else if(sse && sse!==`True`){
 
-return await reply(`${title} ${mg.jointitleandqualitydl} ${quality}
+return await reply(`${title} ${mg.jointitleandqualitydl}
 
 *${sse}*
 
 ${mg.downloadusinglink}
 
-Link: ${downloadInfo.link}
+Link: ${url}
 
 ${mg.footer}`);
 
@@ -1228,12 +1237,12 @@ async (conn, mek, m, {from, l, quoted, body, isCmd, command, args, q, isGroup, s
             }
           images.forEach(async image => {
             if(chat?.length === 1 && chat[0] === where){
-              const mass = await conn.sendMsg(where , { image: {url : image}, caption: `*${config.FOOTERNAME}` }, { quoted: mek });
+              const mass = await conn.sendMsg(where , { image: {url : image}, caption: `${config.FOOTERNAME}` }, { quoted: mek });
               await conn.sendMsg(where, { react: { text: "📽️", key: mass.key } });
               
             }else{
               await Promise.all(chat.map(async (c) => {
-                const mass = await conn.sendMsg(c , { image: {url : image}, caption: `*${config.FOOTERNAME}` });
+                const mass = await conn.sendMsg(c , { image: {url : image}, caption: `${config.FOOTERNAME}` });
                  await conn.sendMsg(c, { react: { text: "📽️", key: mass.key } });
                  
             }));
@@ -1251,12 +1260,12 @@ async (conn, mek, m, {from, l, quoted, body, isCmd, command, args, q, isGroup, s
           
           images.forEach(async image => {
             if(chat?.length === 1 && chat[0] === where){
-              const mass = await conn.sendMsg(where , { image: {url : image}, caption: `*${config.FOOTERNAME}*` }, { quoted: mek });
+              const mass = await conn.sendMsg(where , { image: {url : image}, caption: `${config.FOOTERNAME}` }, { quoted: mek });
               await conn.sendMsg(where, { react: { text: "📽️", key: mass.key } });
               
             }else{
               await Promise.all(chat.map(async (c) => {
-                const mass = await conn.sendMsg(c , { image: {url : image}, caption: `*${config.FOOTERNAME}*` });
+                const mass = await conn.sendMsg(c , { image: {url : image}, caption: `${config.FOOTERNAME}` });
                  await conn.sendMsg(c, { react: { text: "📽️", key: mass.key } });
                 
             }));
@@ -1373,7 +1382,7 @@ async (conn, mek, m, {from, l, quoted, body, isCmd, command, args, q, isGroup, s
           const genres = data.Genre;
           const country = data.Country;
           const desc = data.Plot;
-          const image = data.Poster;
+          const image = data.Poster.replace('@._V1_SX300','._V1_FMjpg_UY2902_');
           let cot =`☘️ *Tιтle : ${title} ${year}*`+`\n`+
           `\n`+
           `📆 *Rᴇʟᴇᴀꜱᴇ ➠ ${date}*`+`\n`+
