@@ -621,7 +621,7 @@ let menu = `*╭──────────●●►*
                 menu += `*╰───────────●●►*\n`;
         }
 menu += `
-${mg.footer}*\n`;
+${mg.footer}\n`;
 
         await conn.sendMsg(from, { image: { url: mg.menulogo }, caption: menu }, { quoted: mek  });
     } catch (e) {
@@ -730,7 +730,7 @@ const text = `╭──────────●●►
 *│*
 ╰───────────●●►
 
-> *𝙼𝙰𝚂𝚃𝙴𝚁-𝚇-𝙲𝚈𝙱𝙴𝚁 | 𝚆𝙰-𝙱𝙾𝚃™*`
+> 𝙼𝙰𝚂𝚃𝙴𝚁-𝚇-𝙲𝚈𝙱𝙴𝚁 | 𝚆𝙰-𝙱𝙾𝚃™*`
 await conn.sendMsg(m.chat, { image: { url:  mg.menulogo }, caption: text }, { quoted: mek })
 } catch (e) {
 reply('*Error !!*')
