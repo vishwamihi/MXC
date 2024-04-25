@@ -1093,7 +1093,9 @@ const dl_data = await fetchJson(`${sinsub.api}${sinsub.sinsubdllink}${p}&${sinsu
 }
 
 
-const { fileSize, fileName }  = getFileInfo(url)
+const fileinfo  = await getFileInfo(url)
+const fileSize = fileinfo.fileSize
+const fileName = fileinfo.fileName
 if(title === undefined || title === null){
   title = fileName
 }
@@ -1107,8 +1109,7 @@ ${mg.footer}`
 
   const sse = checkSizeAndReply(size);
   if(sse && sse===`True`){
-    
-await moviesend(reply,title, caption, url, conn, mek, chat)
+    await moviesend(reply,title, caption, url, conn, mek, chat)
 
     }else if(sse && sse!==`True`){
 
