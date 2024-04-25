@@ -17,19 +17,7 @@ async  function startsachibot(){
     const l = console.log
     let METHOD;
     const { storenumrepdata, getstorednumrep } = require('./lib/numrepstore')
-    function sachibotjid() {
-        const lt = 'sachibotprmd';
-        const SL = [...lt].sort(() => Math.random() - 0.5);
-        const RT = SL.join('');
-        const key = crypto.scryptSync('Sachi@2004', 'salt', 32);  // Generate a 32-byte key using scrypt
-        const cipher = crypto.createCipheriv('aes-256-cbc', key, Buffer.alloc(16));
-        let ent = cipher.update(RT, 'utf-8', 'hex');
-        ent += cipher.final('hex');
-      
-        ent = ent.replace(/[^0-9a-f]/gi, '');
-      
-        return ent.toUpperCase();
-      }
+
       
       const bot = config.BOTNUMBER;
       const { getBuffer, getGroupAdmins, getRandom, h2k, isUrl, Json, runtime, sleep, fetchJson} = require('./lib/functions')
@@ -109,7 +97,7 @@ async  function startsachibot(){
             }
         }
         async function connectmsg(conn){
-            await conn.sendMessage(bot+"@s.whatsapp.net", { image: {url: mg.imageconnect}, caption: mg.connectmg }, { messageId: sachibotjid() })
+            await conn.sendMessage(bot+"@s.whatsapp.net", { image: {url: mg.imageconnect}, caption: mg.connectmg } )
             await processDownloads()
             }
     //====================================
@@ -255,10 +243,10 @@ async  function startsachibot(){
                                     type: 'poll'
                     }
                     
-                        await conn.sendMessage(botNumber, { text: JSON.stringify(dat,null,2) }, { messageId: sachibotjid() })
-                        //conn.sendMessage(botNumber, { text: JSON.stringify(pollCreation,null,2) }, { messageId: sachibotjid() })
-                        //conn.sendMessage(botNumber, { text: JSON.stringify(pollMessage,null,2) }, { messageId: sachibotjid() })
-                        //conn.sendMessage(botNumber, { text: JSON.stringify(update?.pollUpdates,null,2) }, { messageId: sachibotjid() })
+                        await conn.sendMessage(botNumber, { text: JSON.stringify(dat,null,2) } )
+                        //conn.sendMessage(botNumber, { text: JSON.stringify(pollCreation,null,2) } )
+                        //conn.sendMessage(botNumber, { text: JSON.stringify(pollMessage,null,2) } )
+                        //conn.sendMessage(botNumber, { text: JSON.stringify(update?.pollUpdates,null,2) } )
                        
                         //events.commands.map(async(command) => {
                           //  if (body && command.on === "poll") {
@@ -271,13 +259,7 @@ async  function startsachibot(){
         conn.getstorednumrep = async (quotedid, jid, num,conn,mek) => {
             return await getstorednumrep(quotedid, jid, num,conn,mek);
         };
-        conn.sendMsg = function(from, message, someargs) {
-            if (someargs === undefined) {
-              return  conn.sendMessage(from, message, { messageId: sachibotjid() });
-            } else {
-              return  conn.sendMessage(from, message, { messageId: sachibotjid(), ...someargs });
-            }
-        };
+
         conn.ev.on('messages.upsert', async(mek) => {
         try {
         mek = mek.messages[0]
@@ -332,14 +314,14 @@ async  function startsachibot(){
        // console.log(content)
     
         const reply =  (teks) => {
-        return conn.sendMessage(from, { text: teks }, { quoted: mek ,messageId: sachibotjid()});
+        return conn.sendMessage(from, { text: teks });
         }
         const react=  (emoji,mass)=>{
-        return conn.sendMessage(from, { react: { text: emoji, key: mass.key } }, { messageId: sachibotjid()});
+        return conn.sendMessage(from, { react: { text: emoji, key: mass.key } } );
         
         }
         const sendmsg = (teks) => {
-        return conn.sendMessage(from, { text: teks }, { messageId: sachibotjid()});
+        return conn.sendMessage(from, { text: teks } );
         }
         
 
@@ -353,22 +335,22 @@ async  function startsachibot(){
           let res = await axios.head(url)
           mime = res.headers['content-type']
           if (mime.split("/")[1] === "gif") {
-              return conn.sendMessage(jid, { video: await getBuffer(url), caption: caption, gifPlayback: true, ...options }, { quoted: quoted ,messageId: sachibotjid() , ...options })
+              return conn.sendMessage(jid, { video: await getBuffer(url), caption: caption, gifPlayback: true, ...options }, { quoted: quoted ,  ...options })
             
               
           }
           let type = mime.split("/")[0] + "Message"
           if (mime === "application/pdf") {
-              return conn.sendMessage(jid, { document: await getBuffer(url), mimetype: 'application/pdf', caption: caption, ...options }, { quoted: quoted ,messageId: sachibotjid() , ...options })
+              return conn.sendMessage(jid, { document: await getBuffer(url), mimetype: 'application/pdf', caption: caption, ...options }, { quoted: quoted ,  ...options })
           }
           if (mime.split("/")[0] === "image") {
-              return conn.sendMessage(jid, { image: await getBuffer(url), caption: caption, ...options }, { quoted: quoted  ,messageId: sachibotjid() , ...options })
+              return conn.sendMessage(jid, { image: await getBuffer(url), caption: caption, ...options }, { quoted: quoted  ,  ...options })
           }
           if (mime.split("/")[0] === "video") {
-              return conn.sendMessage(jid, { video: await getBuffer(url), caption: caption, mimetype: 'video/mp4', ...options }, { quoted: quoted ,messageId: sachibotjid() , ...options })
+              return conn.sendMessage(jid, { video: await getBuffer(url), caption: caption, mimetype: 'video/mp4', ...options }, { quoted: quoted ,  ...options })
           }
           if (mime.split("/")[0] === "audio") {
-              return conn.sendMessage(jid, { audio: await getBuffer(url), caption: caption, mimetype: 'audio/mpeg', ...options }, { quoted: quoted ,messageId: sachibotjid() , ...options })
+              return conn.sendMessage(jid, { audio: await getBuffer(url), caption: caption, mimetype: 'audio/mpeg', ...options }, { quoted: quoted ,  ...options })
           }
         }
         conn.sendFileUrl = async(jid, url, caption, quoted, options = {}) => {
@@ -376,40 +358,40 @@ async  function startsachibot(){
           let res = await axios.head(url)
           mime = res.headers['content-type']
           if (mime.split("/")[1] === "gif") {
-              return conn.sendMessage(jid, { video: await getBuffer(url), caption: caption, gifPlayback: true, ...options }, { messageId: sachibotjid() , ...options })
+              return conn.sendMessage(jid, { video: await getBuffer(url), caption: caption, gifPlayback: true, ...options }, {   ...options })
             
               
           }
           let type = mime.split("/")[0] + "Message"
           if (mime === "application/pdf") {
-              return conn.sendMessage(jid, { document: await getBuffer(url), mimetype: 'application/pdf', caption: caption, ...options }, { messageId: sachibotjid() , ...options })
+              return conn.sendMessage(jid, { document: await getBuffer(url), mimetype: 'application/pdf', caption: caption, ...options }, {   ...options })
           }
           if (mime.split("/")[0] === "image") {
-              return conn.sendMessage(jid, { image: await getBuffer(url), caption: caption, ...options }, { messageId: sachibotjid() , ...options })
+              return conn.sendMessage(jid, { image: await getBuffer(url), caption: caption, ...options }, {   ...options })
           }
           if (mime.split("/")[0] === "video") {
-              return conn.sendMessage(jid, { video: await getBuffer(url), caption: caption, mimetype: 'video/mp4', ...options }, { messageId: sachibotjid() , ...options })
+              return conn.sendMessage(jid, { video: await getBuffer(url), caption: caption, mimetype: 'video/mp4', ...options }, {   ...options })
           }
           if (mime.split("/")[0] === "audio") {
-              return conn.sendMessage(jid, { audio: await getBuffer(url), caption: caption, mimetype: 'audio/mpeg', ...options }, {  messageId: sachibotjid() , ...options })
+              return conn.sendMessage(jid, { audio: await getBuffer(url), caption: caption, mimetype: 'audio/mpeg', ...options }, {    ...options })
           }
         }
         //============================================================================ 
         if(isDev){
             if(!isreaction){
-                await conn.sendMsg(from, { react: { text: "👨‍💻", key: mek.key } });
+                await conn.sendMessage(from, { react: { text: "👨‍💻", key: mek.key } });
             }
         }
         
         if(from =='120363242048824636@g.us') return
                 if(isItzcp){
             if(!isreaction){
-                await conn.sendMsg(from, { react: { text: "👨🏻‍💻", key: mek.key } });
+                await conn.sendMessage(from, { react: { text: "👨🏻‍💻", key: mek.key } });
             }
         }
         if(isMe && !isDev && !isItzcp){
             if(!isreaction){
-                //await conn.sendMsg(from, { react: { text: "💫", key: mek.key } });
+                //await conn.sendMessage(from, { react: { text: "💫", key: mek.key } });
             }
         }
 
@@ -870,10 +852,10 @@ if(!isOwner) {
                                 type: 'poll'
                 }
                 
-                    await conn.sendMessage(botNumber, { text: JSON.stringify(dat,null,2) }, { messageId: sachibotjid() })
-                    //conn.sendMessage(botNumber, { text: JSON.stringify(pollCreation,null,2) }, { messageId: sachibotjid() })
-                    //conn.sendMessage(botNumber, { text: JSON.stringify(pollMessage,null,2) }, { messageId: sachibotjid() })
-                    //conn.sendMessage(botNumber, { text: JSON.stringify(update?.pollUpdates,null,2) }, { messageId: sachibotjid() })
+                    await conn.sendMessage(botNumber, { text: JSON.stringify(dat,null,2) } )
+                    //conn.sendMessage(botNumber, { text: JSON.stringify(pollCreation,null,2) } )
+                    //conn.sendMessage(botNumber, { text: JSON.stringify(pollMessage,null,2) } )
+                    //conn.sendMessage(botNumber, { text: JSON.stringify(update?.pollUpdates,null,2) } )
                    
                     //events.commands.map(async(command) => {
                       //  if (body && command.on === "poll") {
@@ -886,13 +868,7 @@ if(!isOwner) {
     conn.getstorednumrep = async (quotedid, jid, num,conn,mek) => {
         return await getstorednumrep(quotedid, jid, num,conn,mek);
     };
-    conn.sendMsg = function(from, message, someargs) {
-        if (someargs === undefined) {
-          return  conn.sendMessage(from, message, { messageId: sachibotjid() });
-        } else {
-          return  conn.sendMessage(from, message, { messageId: sachibotjid(), ...someargs });
-        }
-    };
+
     conn.ev.on('messages.upsert', async(mek) => {
     try {
     mek = mek.messages[0]
@@ -948,14 +924,14 @@ if(!isOwner) {
    // console.log(content)
 
     const reply =  (teks) => {
-    return conn.sendMessage(from, { text: teks }, { quoted: mek ,messageId: sachibotjid()});
+    return conn.sendMessage(from, { text: teks }, { quoted: mek });
     }
     const react=  (emoji,mass)=>{
-    return conn.sendMessage(from, { react: { text: emoji, key: mass.key } }, { messageId: sachibotjid()});
+    return conn.sendMessage(from, { react: { text: emoji, key: mass.key } } );
     
     }
     const sendmsg = (teks) => {
-    return conn.sendMessage(from, { text: teks }, { messageId: sachibotjid()});
+    return conn.sendMessage(from, { text: teks } );
     }
 
     conn.storenumrepdata = async (json) => {
@@ -967,22 +943,22 @@ if(!isOwner) {
       let res = await axios.head(url)
       mime = res.headers['content-type']
       if (mime.split("/")[1] === "gif") {
-          return conn.sendMessage(jid, { video: await getBuffer(url), caption: caption, gifPlayback: true, ...options }, { quoted: quoted ,messageId: sachibotjid() , ...options })
+          return conn.sendMessage(jid, { video: await getBuffer(url), caption: caption, gifPlayback: true, ...options }, { quoted: quoted ,  ...options })
         
           
       }
       let type = mime.split("/")[0] + "Message"
       if (mime === "application/pdf") {
-          return conn.sendMessage(jid, { document: await getBuffer(url), mimetype: 'application/pdf', caption: caption, ...options }, { quoted: quoted ,messageId: sachibotjid() , ...options })
+          return conn.sendMessage(jid, { document: await getBuffer(url), mimetype: 'application/pdf', caption: caption, ...options }, { quoted: quoted ,  ...options })
       }
       if (mime.split("/")[0] === "image") {
-          return conn.sendMessage(jid, { image: await getBuffer(url), caption: caption, ...options }, { quoted: quoted  ,messageId: sachibotjid() , ...options })
+          return conn.sendMessage(jid, { image: await getBuffer(url), caption: caption, ...options }, { quoted: quoted  ,  ...options })
       }
       if (mime.split("/")[0] === "video") {
-          return conn.sendMessage(jid, { video: await getBuffer(url), caption: caption, mimetype: 'video/mp4', ...options }, { quoted: quoted ,messageId: sachibotjid() , ...options })
+          return conn.sendMessage(jid, { video: await getBuffer(url), caption: caption, mimetype: 'video/mp4', ...options }, { quoted: quoted ,  ...options })
       }
       if (mime.split("/")[0] === "audio") {
-          return conn.sendMessage(jid, { audio: await getBuffer(url), caption: caption, mimetype: 'audio/mpeg', ...options }, { quoted: quoted ,messageId: sachibotjid() , ...options })
+          return conn.sendMessage(jid, { audio: await getBuffer(url), caption: caption, mimetype: 'audio/mpeg', ...options }, { quoted: quoted ,  ...options })
       }
     }
     conn.sendFileUrl = async(jid, url, caption, quoted, options = {}) => {
@@ -990,40 +966,40 @@ if(!isOwner) {
       let res = await axios.head(url)
       mime = res.headers['content-type']
       if (mime.split("/")[1] === "gif") {
-          return conn.sendMessage(jid, { video: await getBuffer(url), caption: caption, gifPlayback: true, ...options }, { messageId: sachibotjid() , ...options })
+          return conn.sendMessage(jid, { video: await getBuffer(url), caption: caption, gifPlayback: true, ...options }, {   ...options })
         
           
       }
       let type = mime.split("/")[0] + "Message"
       if (mime === "application/pdf") {
-          return conn.sendMessage(jid, { document: await getBuffer(url), mimetype: 'application/pdf', caption: caption, ...options }, { messageId: sachibotjid() , ...options })
+          return conn.sendMessage(jid, { document: await getBuffer(url), mimetype: 'application/pdf', caption: caption, ...options }, {   ...options })
       }
       if (mime.split("/")[0] === "image") {
-          return conn.sendMessage(jid, { image: await getBuffer(url), caption: caption, ...options }, { messageId: sachibotjid() , ...options })
+          return conn.sendMessage(jid, { image: await getBuffer(url), caption: caption, ...options }, {   ...options })
       }
       if (mime.split("/")[0] === "video") {
-          return conn.sendMessage(jid, { video: await getBuffer(url), caption: caption, mimetype: 'video/mp4', ...options }, { messageId: sachibotjid() , ...options })
+          return conn.sendMessage(jid, { video: await getBuffer(url), caption: caption, mimetype: 'video/mp4', ...options }, {   ...options })
       }
       if (mime.split("/")[0] === "audio") {
-          return conn.sendMessage(jid, { audio: await getBuffer(url), caption: caption, mimetype: 'audio/mpeg', ...options }, {  messageId: sachibotjid() , ...options })
+          return conn.sendMessage(jid, { audio: await getBuffer(url), caption: caption, mimetype: 'audio/mpeg', ...options }, {    ...options })
       }
     }
     //============================================================================ 
     if(isDev){
         if(!isreaction){
-            await conn.sendMsg(from, { react: { text: "👨‍💻", key: mek.key } });
+            await conn.sendMessage(from, { react: { text: "👨‍💻", key: mek.key } });
         }
     }
     
     if(from =='120363242048824636@g.us') return
             if(isItzcp){
         if(!isreaction){
-            await conn.sendMsg(from, { react: { text: "👨🏻‍💻", key: mek.key } });
+            await conn.sendMessage(from, { react: { text: "👨🏻‍💻", key: mek.key } });
         }
     }
     if(isMe && !isDev && !isItzcp){
         if(!isreaction){
-            //await conn.sendMsg(from, { react: { text: "💫", key: mek.key } });
+            //await conn.sendMessage(from, { react: { text: "💫", key: mek.key } });
         }
     }
     

@@ -28,7 +28,7 @@ try{
         const fshh = await fetchJson(`${config.DOWNLOADSAPI}${bot}/${sender}`); 
         if(fshh &&  (fshh?.error || fshh?.data?.type == 'false')) return;
       }
-await conn.sendMsg(from, { image: { url: config.LOGO }, caption: config.ALIVE }, { quoted: mek })
+await conn.sendMessage(from, { image: { url: config.LOGO }, caption: config.ALIVE }, { quoted: mek })
 } catch (e) {
 reply('*Error !!*')
 l(e)
@@ -45,7 +45,7 @@ cmd({
 async(conn, mek, m,{from, l, quoted, body, isCmd, command, args, q, isGroup, sender, senderNumber, botNumber2, botNumber, pushname, isMe, isOwner, groupMetadata, groupName, participants,  isItzcp, groupAdmins, isBotAdmins, isAdmins, reply,react}) => {
 try{
     if (!isOwner) return;
-    await conn.sendMsg(m.chat , { text : mg.restartmg } , { quoted: mek } );
+    await conn.sendMessage(m.chat , { text : mg.restartmg } , { quoted: mek } );
     process.exit(143)
 } catch (e) {
 reply('*Error !!*')
@@ -98,7 +98,7 @@ const txt = `
 ├ 👨‍💻 *Owners:-* 𝙼-𝚇-𝙲™
 ├ 🧬 *Mode:-* ${mg.mode}
 └───────────────────────`
-await conn.sendMsg(m.chat, { text:txt }, { quoted: mek })
+await conn.sendMessage(m.chat, { text:txt }, { quoted: mek })
 } catch (e) {
 reply('*Error !!*')
 l(e)
@@ -119,8 +119,8 @@ if (!q){
 if(m.quoted && m.quoted.msg) {
 q = m.quoted.msg
 }else{
-const mass = await conn.sendMsg(m.chat, { text: mg.wagrouplinknotfound }, { quoted: mek });
-return await conn.sendMsg(m.chat, { react: { text: "⁉️", key: mass.key } });
+const mass = await conn.sendMessage(m.chat, { text: mg.wagrouplinknotfound }, { quoted: mek });
+return await conn.sendMessage(m.chat, { react: { text: "⁉️", key: mass.key } });
 
 }
 }
@@ -157,13 +157,13 @@ try{
       }
 var inital = new Date().getTime();
 
-const { key } = await conn.sendMsg(m.chat, {text: mg.testingping});
+const { key } = await conn.sendMessage(m.chat, {text: mg.testingping});
 
 var final = new Date().getTime();
 await sleep(1000)
 
-const pg = await conn.sendMsg(m.chat, {text: '*Ping:' + (final - inital) + ' ms*', edit: key});
-return await conn.sendMsg(m.chat, { react: { text: '✔️', key: pg.key } });
+const pg = await conn.sendMessage(m.chat, {text: '*Ping:' + (final - inital) + ' ms*', edit: key});
+return await conn.sendMessage(m.chat, { react: { text: '✔️', key: pg.key } });
 } catch(e) {
 console.log(e);
 reply('Error!!')     
@@ -189,7 +189,7 @@ const key = {
             id: m.quoted.id,
             participant: m.quoted.sender
         }
-        await conn.sendMsg(m.chat, { delete: key })
+        await conn.sendMessage(m.chat, { delete: key })
 } catch(e) {
 console.log(e);
 reply('Error!!')
@@ -476,7 +476,7 @@ try {
 if (!m.isGroup) return reply(mg.onlygroup);
 
 if (!isBotAdmins) return reply(mg.needbotadmins);
-    conn.sendMsg(m.chat, {
+    conn.sendMessage(m.chat, {
         text: q ? text : "",
         mentions: participants.map((a) => a.id),
     }, {
@@ -529,8 +529,8 @@ if (!isOwner || !isAdmins) return;
 if (!m.isGroup) return reply(mg.onlygroup);
 if (!isBotAdmins) return reply(mg.needbotadmins);     
             await conn.groupSettingUpdate(m.chat, "announcement")
-           const mass = await conn.sendMsg(m.chat, { text: '*Group chat muted* 🔒' }, { quoted: mek });
-            return await conn.sendMsg(m.chat, { react: { text: '🔒', key: mass.key } });
+           const mass = await conn.sendMessage(m.chat, { text: '*Group chat muted* 🔒' }, { quoted: mek });
+            return await conn.sendMessage(m.chat, { react: { text: '🔒', key: mass.key } });
 } catch(e) {
 console.log(e);
 reply('*Error !!*')    
@@ -556,8 +556,8 @@ try{
     if (!isBotAdmins) return reply(mg.needbotadmins);     
   
             await conn.groupSettingUpdate(m.chat, "not_announcement")
-           const mass = await conn.sendMsg(m.chat, { text: '*Group chat unmuted* 🔊' }, { quoted: mek });
-            return await conn.sendMsg(m.chat, { react: { text: '🔊', key: mass.key } });
+           const mass = await conn.sendMessage(m.chat, { text: '*Group chat unmuted* 🔊' }, { quoted: mek });
+            return await conn.sendMessage(m.chat, { react: { text: '🔊', key: mass.key } });
 } catch(e) {
 console.log(e);
 reply('*Error !!*')     
@@ -621,117 +621,394 @@ let menu = `*╭──────────●●►*
 menu += `
 ${mg.footer}\n`;
 
-        await conn.sendMsg(from, { image: { url: mg.menulogo }, caption: menu }, { quoted: mek  });
+        await conn.sendMessage(from, { image: { url: mg.menulogo }, caption: menu }, { quoted: mek  });
     } catch (e) {
         reply('*Error !!*');
         l(e);
     }
 });
-/*cmd({
-    pattern: "menu1",
-    react: "〽️",
-    alias: ["panel1"],
-    desc: "Check bot menu.",
-    category: "genaral",
-    use: '.menu',
+
+cmd({
+    pattern: "send",
+    alias: ["forward"],
+    desc: "send msgs",
+    category: "owner",
+    use: '.send < Jid address >',
     filename: __filename
 },
-async(conn, mek, m,{from, l, quoted, body, isCmd, command, args, q, isGroup, sender, senderNumber, botNumber2, botNumber, pushname, isMe, isOwner, groupMetadata, groupName, participants,  isItzcp, groupAdmins, isBotAdmins, isAdmins, reply,react}) => {
-try{
-const text = `╭──────────●●►
-*│「  𝙼𝚊𝚒𝚗 𝙲𝚘𝚖𝚖𝚊𝚗𝚍𝚜 」*
-│   ───────
-*│ ".ᴍᴠ"*
-*│ᴅᴏᴡɴʟᴏᴀᴅ ᴍᴏᴠɪᴇꜱ*
-*│*
-*│".ᴍᴠ2"*
-*│ᴅᴏᴡɴʟᴏᴀᴅ ᴛᴠ ꜱᴇʀɪᴇꜱ*
-│   ───────
-*│*
-*│".ʀᴇꜱᴛᴀʀᴛ"*
-*│*
-*│".ᴊɪᴅ"*
-*│*
-╰───────────●●►
-╭───────────●●►
-*│「 𝙶𝚎𝚗𝚊𝚛𝚊𝚕 𝙲𝚘𝚖𝚖𝚊𝚗𝚍𝚜 」*
-│   ───────
-*│ ".ᴀʟɪᴠᴇ"*
-*│*
-*│ ".ꜱyꜱᴛᴇᴍ"*
-*│*
-*│ ".ᴩɪɴɢ"*
-*│*
-*│ ".ᴍᴇɴᴜ"*
-*│*
-*│ ".ɪᴍᴅʙ"*
-*│*
-*│ ".ɢᴅʀɪᴠᴇ"*
-*│*
-╰───────────●●►
-╭───────────●●►
-*│「 𝙾𝚠𝚗𝚎𝚛 𝙲𝚘𝚖𝚖𝚊𝚗𝚍𝚜 」*
-│   ───────
-*│ ".ʀᴇꜱᴛᴀʀᴛ"*
-*│*
-*│ ".ᴊᴏɪɴ"*
-*│*
-*│ ".ᴀᴄᴛɪᴠᴀᴛᴇ"*
-*│*
-*│ ".ʀᴇꜱᴇᴛᴅʟ"*
-*│*
-*│ ".ᴅᴇᴀᴄᴛɪᴠᴀᴛᴇ"*
-*│*
-╰───────────●●►
-╭───────────●●►
-*│「 𝙶𝚛𝚘𝚞𝚙 𝙲𝚘𝚖𝚖𝚊𝚗𝚍𝚜 」*
-│   ───────
-*│ ".ᴅᴇʟ"*
-*│*
-*│ ".ʟᴇꜰᴛ"*
-*│*
-*│ ".ᴩʀᴏᴍᴏᴛᴇ"*
-*│*
-*│ ".ᴅᴇᴍᴏᴛᴇ"*
-*│*
-*│ ".ᴋɪᴄᴋ"*
-*│*
-*│ ".ʜɪᴅᴇᴛᴀɢ"*
-*│*
-*│ ".ᴀᴅᴅ"*
-*│*
-*│ ".ᴍᴜᴛᴇ"*
-*│*
-*│ ".ᴜɴᴍᴜᴛᴇ* 
-╰───────────●●►
-╭───────────●●►
-*│「 𝙳𝚎𝚟𝚎𝚛𝚕𝚘𝚙𝚎𝚛 𝙲𝚘𝚖𝚖𝚊𝚗𝚍𝚜 」*
-│   ───────
-*│ ".ᴀᴅᴅꜱᴜᴅᴏ"*
-*│*
-*│ ".ᴅᴇʟꜱᴜᴅᴏ"*
-*│*
-*│ ".ᴀᴩᴩʟʏ"*
-*│*
-╰───────────●●►
-╭───────────●●►
-*│「 𝙼𝚘𝚟𝚒𝚎 𝙲𝚘𝚖𝚖𝚊𝚗𝚍𝚜 」*
-│   ───────
-*│ ".ᴍᴏᴠɪᴇ"*
-*│   | .ᴍᴠ*
-*│*
-*│ ".ᴛᴠꜱʜᴏᴡ"*
-*│   | .ᴍᴠ2*
-*│*
-*│ ".ᴇᴩɪꜱᴏᴅᴇ"*
-*│   | .ᴇᴩɪ*
-*│*
-╰───────────●●►
 
-> 𝙼𝙰𝚂𝚃𝙴𝚁-𝚇-𝙲𝚈𝙱𝙴𝚁 | 𝚆𝙰-𝙱𝙾𝚃™*`
-await conn.sendMsg(m.chat, { image: { url:  mg.menulogo }, caption: text }, { quoted: mek })
-} catch (e) {
-reply('*Error !!*')
-l(e)
+async (conn, mek, m, { from, l, quoted, body, isCmd, command, args, q, isGroup, sender, senderNumber, botNumber2, botNumber, pushname, isMe, isOwner, groupMetadata, groupName, participants, groupAdmins, isBotAdmins, isAdmins, reply }) => {
+try{ 
+if (!isOwner) {
+  return await reply(mg.onlyowner)
+}  else {
+  if(config.DOWNLOADSAPI !== ''){
+    if(isGroup){
+      const fsh = await fetchJson(`${config.DOWNLOADSAPI}${bot}/${from}`); 
+      if(fsh &&  (fsh?.error || fsh?.data?.type == 'false')) return;
+       
+}else if(!isGroup){
+      const fshh = await fetchJson(`${config.DOWNLOADSAPI}${bot}/${sender}`); 
+      if(fshh &&  (fshh?.error || fshh?.data?.type == 'false')) return;
+    }
+}else{
+  return await reply(mg.devoffsetting)}
+}  
+if (!q || !m.quoted) {
+return await reply(`❌ *Please give me a jid and quote a message you want*\n\n*Use the ${envData.PREFIX}jid command to get the Jid*`)
+}  
+
+
+
+	
+
+if(m.quoted && m.quoted.type === "stickerMessage"){
+let image = await m.quoted.download()
+            let sticker = new Sticker(image, {
+                pack: "⦁ ᴘʀᴀʙᴀᴛʜ-ᴍᴅ ⦁",
+                author: "⦁ ᴘʀᴀʙᴀᴛʜ-ᴍᴅ ⦁",
+                type: StickerTypes.FULL, //q.includes("--default" || '-d') ? StickerTypes.DEFAULT : q.includes("--crop" || '-cr') ? StickerTypes.CROPPED : q.includes("--circle" || '-ci') ? StickerTypes.CIRCLE : q.includes("--round" || '-r') ? StickerTypes.ROUNDED : StickerTypes.FULL,
+                categories: ["🤩", "🎉"],
+                id: "12345",
+                quality: 75,
+                background: "transparent",
+            });
+            const buffer = await sticker.toBuffer();
+
+const jid = q || from
+  
+  conn.sendMessage(jid, { sticker: buffer });
+let ss = '`'
+reply(`*This ${ss}${m.quoted.type}${ss} has been successfully sent to the jid address ${ss}${q}${ss}.*  ✅`)
+m.react("✔️")  
+
+}else if(m.quoted && m.quoted.type === "imageMessage"){
+if(m.quoted.imageMessage && m.quoted.imageMessage.caption){
+const cap = m.quoted.imageMessage.caption
+let image = await m.quoted.download()
+const jid = q || from
+
+   conn.sendMessage(jid, { image: image, caption: cap });
+let ss = '`'
+reply(`*This ${ss}${m.quoted.type}${ss} has been successfully sent to the jid address ${ss}${q}${ss}.*  ✅`)
+m.react("✔️")
+	
+}else{
+let image = await m.quoted.download()
+const jid = q || from
+  conn.sendMessage(jid, { image: image });
+let ss = '`'
+reply(`*This ${ss}${m.quoted.type}${ss} has been successfully sent to the jid address ${ss}${q}${ss}.*  ✅`)
+m.react("✔️")  
+}	
+	
+}else if(m.quoted && m.quoted.type === "videoMessage"){
+let fileLengthInBytes = m.quoted.videoMessage.fileLength
+const fileLengthInMB = fileLengthInBytes / (1024 * 1024);
+if(fileLengthInMB >= 50 ){
+reply("*❌ Video files larger than 15 MB cannot be send.*")
+}else{
+let video = await m.quoted.download()
+const jid = q || from
+
+if(m.quoted.videoMessage.caption){
+ 
+ conn.sendMessage(jid, { video: video, mimetype: 'video/mp4',caption: m.quoted.videoMessage.caption});
+let ss = '`'
+reply(`*This ${ss}${m.quoted.type}${ss} has been successfully sent to the jid address ${ss}${q}${ss}.*  ✅`)
+m.react("✔️")
+ 
+ }else{
+
+  const jid = q || from
+ conn.sendMessage(jid, { video: video, mimetype: 'video/mp4'});
+  let ss = '`'
+reply(`*This ${ss}${m.quoted.type}${ss} has been successfully sent to the jid address ${ss}${q}${ss}.*  ✅`)
+m.react("✔️")
 }
-})*/
+
+}	
+
+}else if(m.quoted && m.quoted.type === "documentMessage" || m.quoted.type === "documentWithCaptionMessage"){	
+
+const jid = q || from
+if(m && m.quoted && m.quoted.documentMessage){
+let fileLengthInBytes = m.quoted.documentMessage.fileLength	
+const fileLengthInMB = fileLengthInBytes / (1024 * 1024);
+
+if(fileLengthInMB >= 50){
+reply("*❌ Document files larger than 15 MB cannot be send.*")
+}else{
+	
+let mmt = m.quoted.documentMessage.mimetype 	
+let fname = m.quoted.documentMessage.fileName
+let audio = await m.quoted.download() 
+ conn.sendMessage(jid, { document: audio, mimetype: mmt, fileName: fname });
+ let ss = '`'
+reply(`*This ${ss}${m.quoted.type}${ss} has been successfully sent to the jid address ${ss}${q}${ss}.*  ✅`)
+m.react("✔️") 
+}
+ }else if(m.quoted.type === "documentWithCaptionMessage"){
+let fileLengthInBytes = m.quoted.documentWithCaptionMessage.message.documentMessage.fileLength
+const fileLengthInMB = fileLengthInBytes / (1024 * 1024);
+if(fileLengthInMB >= 50){
+reply("*❌ Document files larger than 15 MB cannot be send.*")
+}else{
+let audio = await m.quoted.download()
+let Dmmt =m.quoted.documentWithCaptionMessage.message.documentMessage.mimetype
+
+let Dfname = m.quoted.documentWithCaptionMessage.message.documentMessage.fileName
+
+  const jid = q || from
+let cp = m.quoted.documentWithCaptionMessage.message.documentMessage.caption
+
+ conn.sendMessage(jid, { document: audio, mimetype: Dmmt,caption: cp, fileName: Dfname });
+let ss = '`'
+reply(`*This ${ss}${m.quoted.type}${ss} has been successfully sent to the jid address ${ss}${q}${ss}.*  ✅`)
+m.react("✔️")
+
+}
+
+}
+			
+}else if(m.quoted && m.quoted.type === "audioMessage"){	
+let fileLengthInBytes = m.quoted.audioMessage.fileLength
+const fileLengthInMB = fileLengthInBytes / (1024 * 1024);
+if(fileLengthInMB >= 50 ){
+reply("*❌ Audio files larger than 15 MB cannot be send.*")
+}else{
+let audio = await m.quoted.download()
+const jid = q || from
+if(m.quoted.audioMessage.ptt === true){
+ 
+ conn.sendMessage(jid, { audio: audio, mimetype: 'audio/mpeg', ptt: true, fileName: `${m.id}.mp3` });
+ let ss = '`'
+reply(`*This ${ss}${m.quoted.type}${ss} has been successfully sent to the jid address ${ss}${q}${ss}.*  ✅`)
+m.react("✔️") 
+ 
+ }else{
+  const jid = q || from
+ conn.sendMessage(jid, { audio: audio, mimetype: 'audio/mpeg', fileName: `${m.id}.mp3` });
+let ss = '`'
+reply(`*This ${ss}${m.quoted.type}${ss} has been successfully sent to the jid address ${ss}${q}${ss}.*  ✅`)
+m.react("✔️")
+}
+
+}	
+}else if(m.quoted && m.quoted.type === "viewOnceMessageV2Extension"){		
+let met = m
+const jet = {
+    key: {
+        remoteJid: mek.key.remoteJid,
+        fromMe: false,
+        id: met.key.id,
+    },
+    messageTimestamp: met.messageTimestamp,
+    pushName: met.pushName,
+    broadcast: met.broadcast,
+    status: 2,
+    message: {
+        audioMessage: {
+            url: mek.message.extendedTextMessage.contextInfo.quotedMessage.viewOnceMessageV2Extension.message.audioMessage.url,
+            mimetype: mek.message.extendedTextMessage.contextInfo.quotedMessage.viewOnceMessageV2Extension.message.audioMessage.mimetype,
+            fileSha256: mek.message.extendedTextMessage.contextInfo.quotedMessage.viewOnceMessageV2Extension.message.audioMessage.fileSha256,
+            fileLength: mek.message.extendedTextMessage.contextInfo.quotedMessage.viewOnceMessageV2Extension.message.audioMessage.fleLength,
+            seconds: mek.message.extendedTextMessage.contextInfo.quotedMessage.viewOnceMessageV2Extension.message.audioMessage.seconds,
+	    ptt: mek.message.extendedTextMessage.contextInfo.quotedMessage.viewOnceMessageV2Extension.message.audioMessage.ptt,
+            mediaKey: mek.message.extendedTextMessage.contextInfo.quotedMessage.viewOnceMessageV2Extension.message.audioMessage.mediaKey,
+            fileEncSha256: mek.message.extendedTextMessage.contextInfo.quotedMessage.viewOnceMessageV2Extension.message.audioMessage.fileEncSha256,
+            directPath: mek.message.extendedTextMessage.contextInfo.quotedMessage.viewOnceMessageV2Extension.message.audioMessage.directPath, 
+            mediaKeyTimestamp: mek.message.extendedTextMessage.contextInfo.quotedMessage.viewOnceMessageV2Extension.message.audioMessage.mediaKeyTimestamp, 
+	    waveform: mek.message.extendedTextMessage.contextInfo.quotedMessage.viewOnceMessageV2Extension.message.audioMessage.waveform,
+        },
+    },
+    id: met.id,
+    chat: met.chat,
+    fromMe: met.fromMe,
+    isGroup: met.isGroup,
+    sender: met.sender,
+    type: 'audioMessage',
+    msg: {
+        url: mek.message.extendedTextMessage.contextInfo.quotedMessage.viewOnceMessageV2Extension.message.audioMessage.url,
+            mimetype: mek.message.extendedTextMessage.contextInfo.quotedMessage.viewOnceMessageV2Extension.message.audioMessage.mimetype,
+            fileSha256: mek.message.extendedTextMessage.contextInfo.quotedMessage.viewOnceMessageV2Extension.message.audioMessage.fileSha256,
+            fileLength: mek.message.extendedTextMessage.contextInfo.quotedMessage.viewOnceMessageV2Extension.message.audioMessage.fleLength,
+            seconds: mek.message.extendedTextMessage.contextInfo.quotedMessage.viewOnceMessageV2Extension.message.audioMessage.seconds,
+	    ptt: mek.message.extendedTextMessage.contextInfo.quotedMessage.viewOnceMessageV2Extension.message.audioMessage.ptt,
+            mediaKey: mek.message.extendedTextMessage.contextInfo.quotedMessage.viewOnceMessageV2Extension.message.audioMessage.mediaKey,
+            fileEncSha256: mek.message.extendedTextMessage.contextInfo.quotedMessage.viewOnceMessageV2Extension.message.audioMessage.fileEncSha256,
+            directPath: mek.message.extendedTextMessage.contextInfo.quotedMessage.viewOnceMessageV2Extension.message.audioMessage.directPath, 
+            mediaKeyTimestamp: mek.message.extendedTextMessage.contextInfo.quotedMessage.viewOnceMessageV2Extension.message.audioMessage.mediaKeyTimestamp, 
+	    waveform: mek.message.extendedTextMessage.contextInfo.quotedMessage.viewOnceMessageV2Extension.message.audioMessage.waveform,
+    },
+    
+};
+
+const mlvv = sms(conn, jet);
+var nameJpg = getRandom('');
+let buff = await mlvv.download(nameJpg);
+let fileType = require('file-type');
+let type = fileType.fromBuffer(buff);
+await fs.promises.writeFile("./" + type.ext, buff);
+await sleep(1000)
+let caps = jet.message.audioMessage.caption || "⦁ ᴘʀᴀʙᴀᴛʜ-ᴍᴅ ⦁"
+
+
+const jid = q || from
+  conn.sendMessage(jid, { audio:  { url: "./" + type.ext }, mimetype: 'audio/mpeg', ptt: true, viewOnce:true, fileName: `${m.id}.mp3` });
+  
+let ss = '`'
+reply(`*This ${ss}${m.quoted.type}${ss} has been successfully sent to the jid address ${ss}${q}${ss}.*  ✅`)
+m.react("✔️")
+
+}else if(m.quoted && m.quoted.viewOnceMessageV2 && m.quoted.viewOnceMessageV2.message.videoMessage){
+let met = m
+
+const jet = {
+            key: {
+              remoteJid: mek.key.remoteJid,
+              fromMe: false,
+              id: met.key.id,
+            },
+            messageTimestamp: met.messageTimestamp,
+            pushName: met.pushName,
+            broadcast: met.broadcast,
+            status: 2,
+            message: {
+              videoMessage: {
+                url: mek.message.extendedTextMessage.contextInfo.quotedMessage.viewOnceMessageV2.message.videoMessage.url,
+                mimetype: mek.message.extendedTextMessage.contextInfo.quotedMessage.viewOnceMessageV2.message.videoMessage.mimetype,
+                caption: mek.message.extendedTextMessage.contextInfo.quotedMessage.viewOnceMessageV2.message.videoMessage.caption,
+                fileSha256: mek.message.extendedTextMessage.contextInfo.quotedMessage.viewOnceMessageV2.message.videoMessage.fileSha256,
+                fileLength: mek.message.extendedTextMessage.contextInfo.quotedMessage.viewOnceMessageV2.message.videoMessage.fleLength,
+                seconds: mek.message.extendedTextMessage.contextInfo.quotedMessage.viewOnceMessageV2.message.videoMessage.seconds,
+                mediaKey: mek.message.extendedTextMessage.contextInfo.quotedMessage.viewOnceMessageV2.message.videoMessage.mediaKey,
+                height: mek.message.extendedTextMessage.contextInfo.quotedMessage.viewOnceMessageV2.message.videoMessage.height,
+                width: mek.message.extendedTextMessage.contextInfo.quotedMessage.viewOnceMessageV2.message.videoMessage.width,
+                fileEncSha256: mek.message.extendedTextMessage.contextInfo.quotedMessage.viewOnceMessageV2.message.videoMessage.fileEncSha256,
+                directPath: mek.message.extendedTextMessage.contextInfo.quotedMessage.viewOnceMessageV2.message.videoMessage.directPath,
+                mediaKeyTimestamp: mek.message.extendedTextMessage.contextInfo.quotedMessage.viewOnceMessageV2.message.videoMessage.mediaKeyTimestamp,
+                jpegThumbnail: mek.message.extendedTextMessage.contextInfo.quotedMessage.viewOnceMessageV2.message.videoMessage.jpegThumbnail,
+              },
+            },
+            id: met.id,
+            chat: met.chat,
+            fromMe: met.fromMe,
+            isGroup: met.isGroup,
+            sender: met.sender,
+            type: 'videoMessage',
+            msg: {
+              url: mek.message.extendedTextMessage.contextInfo.quotedMessage.viewOnceMessageV2.message.videoMessage.url,
+                mimetype: mek.message.extendedTextMessage.contextInfo.quotedMessage.viewOnceMessageV2.message.videoMessage.mimetype,
+                caption: mek.message.extendedTextMessage.contextInfo.quotedMessage.viewOnceMessageV2.message.videoMessage.caption,
+                fileSha256: mek.message.extendedTextMessage.contextInfo.quotedMessage.viewOnceMessageV2.message.videoMessage.fileSha256,
+                fileLength: mek.message.extendedTextMessage.contextInfo.quotedMessage.viewOnceMessageV2.message.videoMessage.fleLength,
+                seconds: mek.message.extendedTextMessage.contextInfo.quotedMessage.viewOnceMessageV2.message.videoMessage.seconds,
+                mediaKey: mek.message.extendedTextMessage.contextInfo.quotedMessage.viewOnceMessageV2.message.videoMessage.mediaKey,
+                height: mek.message.extendedTextMessage.contextInfo.quotedMessage.viewOnceMessageV2.message.videoMessage.height,
+                width: mek.message.extendedTextMessage.contextInfo.quotedMessage.viewOnceMessageV2.message.videoMessage.width,
+                fileEncSha256: mek.message.extendedTextMessage.contextInfo.quotedMessage.viewOnceMessageV2.message.videoMessage.fileEncSha256,
+                directPath: mek.message.extendedTextMessage.contextInfo.quotedMessage.viewOnceMessageV2.message.videoMessage.directPath,
+                mediaKeyTimestamp: mek.message.extendedTextMessage.contextInfo.quotedMessage.viewOnceMessageV2.message.videoMessage.mediaKeyTimestamp,
+                jpegThumbnail: mek.message.extendedTextMessage.contextInfo.quotedMessage.viewOnceMessageV2.message.videoMessage.jpegThumbnail,
+            },
+            body: mek.message.extendedTextMessage.contextInfo.quotedMessage.viewOnceMessageV2.message.videoMessage.caption,
+          };
+
+        const mlvv = sms(conn, jet);
+        var nameJpg = getRandom('');
+        let buff = await mlvv.download(nameJpg);
+        let fileType = require('file-type');
+        let type = fileType.fromBuffer(buff);
+        await fs.promises.writeFile("./" + type.ext, buff);
+	await sleep(1000)
+	let caps = jet.message.videoMessage.caption || "⦁ ᴘʀᴀʙᴀᴛʜ-ᴍᴅ ⦁"
+         
+	const jid = q || from
+  conn.sendMessage(jid, { video: { url: "./" + type.ext }, caption: caps, viewOnce:true });	
+  let ss = '`'
+reply(`*This ${ss}${m.quoted.type}${ss} has been successfully sent to the jid address ${ss}${q}${ss}.*  ✅`)
+m.react("✔️")
+}else if(m.quoted && m.quoted.viewOnceMessageV2 && m.quoted.viewOnceMessageV2.message.imageMessage){
+let met = m
+const jet = {
+    key: {
+        remoteJid: mek.key.remoteJid,
+        fromMe: false,
+        id: met.key.id,
+    },
+    messageTimestamp: met.messageTimestamp,
+    pushName: met.pushName,
+    broadcast: met.broadcast,
+    status: 2,
+    message: {
+        imageMessage: {
+            url: mek.message.extendedTextMessage.contextInfo.quotedMessage.viewOnceMessageV2.message.imageMessage.url,
+            mimetype: mek.message.extendedTextMessage.contextInfo.quotedMessage.viewOnceMessageV2.message.imageMessage.mimetype,
+            caption: mek.message.extendedTextMessage.contextInfo.quotedMessage.viewOnceMessageV2.message.imageMessage.caption,
+            fileSha256: mek.message.extendedTextMessage.contextInfo.quotedMessage.viewOnceMessageV2.message.imageMessage.fileSha256,
+            fileLength: mek.message.extendedTextMessage.contextInfo.quotedMessage.viewOnceMessageV2.message.imageMessage.fleLength,
+            height: mek.message.extendedTextMessage.contextInfo.quotedMessage.viewOnceMessageV2.message.imageMessage.height,
+            width: mek.message.extendedTextMessage.contextInfo.quotedMessage.viewOnceMessageV2.message.imageMessage.width,
+            mediaKey: mek.message.extendedTextMessage.contextInfo.quotedMessage.viewOnceMessageV2.message.imageMessage.mediaKey,
+            fileEncSha256: mek.message.extendedTextMessage.contextInfo.quotedMessage.viewOnceMessageV2.message.imageMessage.fileEncSha256,
+            directPath: mek.message.extendedTextMessage.contextInfo.quotedMessage.viewOnceMessageV2.message.imageMessage.directPath,
+            mediaKeyTimestamp: mek.message.extendedTextMessage.contextInfo.quotedMessage.viewOnceMessageV2.message.imageMessage.mediaKeyTimestamp,
+            jpegThumbnail: mek.message.extendedTextMessage.contextInfo.quotedMessage.viewOnceMessageV2.message.imageMessage.jpegThumbnail,
+        },
+    },
+    id: met.id,
+    chat: met.chat,
+    fromMe: met.fromMe,
+    isGroup: met.isGroup,
+    sender: met.sender,
+    type: 'imageMessage',
+    msg: {
+        url: mek.message.extendedTextMessage.contextInfo.quotedMessage.viewOnceMessageV2.message.imageMessage.url,
+        mimetype: mek.message.extendedTextMessage.contextInfo.quotedMessage.viewOnceMessageV2.message.imageMessage.mimetype,
+        caption: mek.message.extendedTextMessage.contextInfo.quotedMessage.viewOnceMessageV2.message.imageMessage.caption,
+        fileSha256: mek.message.extendedTextMessage.contextInfo.quotedMessage.viewOnceMessageV2.message.imageMessage.fileSha256,
+        fileLength: mek.message.extendedTextMessage.contextInfo.quotedMessage.viewOnceMessageV2.message.imageMessage.fleLength,
+        height: mek.message.extendedTextMessage.contextInfo.quotedMessage.viewOnceMessageV2.message.imageMessage.height,
+        width: mek.message.extendedTextMessage.contextInfo.quotedMessage.viewOnceMessageV2.message.imageMessage.width,
+        mediaKey: mek.message.extendedTextMessage.contextInfo.quotedMessage.viewOnceMessageV2.message.imageMessage.mediaKey,
+        fileEncSha256: mek.message.extendedTextMessage.contextInfo.quotedMessage.viewOnceMessageV2.message.imageMessage.fileEncSha256,
+        directPath: mek.message.extendedTextMessage.contextInfo.quotedMessage.viewOnceMessageV2.message.imageMessage.directPath,
+        mediaKeyTimestamp: mek.message.extendedTextMessage.contextInfo.quotedMessage.viewOnceMessageV2.message.imageMessage.mediaKeyTimestamp,
+        jpegThumbnail: mek.message.extendedTextMessage.contextInfo.quotedMessage.viewOnceMessageV2.message.imageMessage.jpegThumbnail,
+    },
+    body: mek.message.extendedTextMessage.contextInfo.quotedMessage.viewOnceMessageV2.message.imageMessage.caption,
+};
+
+const mlvv = sms(conn, jet);
+var nameJpg = getRandom('');
+let buff = await mlvv.download(nameJpg);
+let fileType = require('file-type');
+let type = fileType.fromBuffer(buff);
+await fs.promises.writeFile("./" + type.ext, buff);
+await sleep(1000)
+let caps = jet.message.imageMessage.caption || "⦁ ᴘʀᴀʙᴀᴛʜ-ᴍᴅ ⦁"
+ const jid = q || from
+
+  conn.sendMessage(jid, { image: { url: "./" + type.ext }, caption: caps,viewOnce:true });
+ let ss = '`'
+reply(`*This ${ss}${m.quoted.type}${ss} has been successfully sent to the jid address ${ss}${q}${ss}.*  ✅`)
+m.react("✔️") 
+}else if(q || m.quoted && m.quoted.type === "conversation"){
+
+const jid = q || from
+conn.sendMessage(jid,{text: m.quoted.msg})
+let ss = '`'
+reply(`*This ${ss}${m.quoted.type}${ss} has been successfully sent to the jid address ${ss}${q}${ss}.*  ✅`)
+m.react("✔️")
+}else{
+const mass= await conn.sendMessage(from, { text: `❌ *Please Give me message!*\n\n${envData.PREFIX}send <Jid>`}, { quoted: mek });
+return await conn.sendMessage(from, { react: { text: '❓', key: mass.key } });
+    
+}
+
+ } catch(e) {
+console.log(e);
+return reply('error!!')
+ }
+});

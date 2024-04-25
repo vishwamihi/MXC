@@ -229,7 +229,7 @@ async function sea(conn,chat,mek,q,reply,type,remotejids){
              const where = mek?.key?.remoteJid
              const mydata = await getBuffer(config.imagesearch);
              
-               const mass = await conn.sendMsg(where, { image: mydata, caption: formattedText }, { quoted: mek });
+               const mass = await conn.sendMessage(where, { image: mydata, caption: formattedText }, { quoted: mek });
                const jsonmsg = {
                 key : mass.key,
                 numrep,
@@ -237,7 +237,7 @@ async function sea(conn,chat,mek,q,reply,type,remotejids){
                }
                
                await storenumrepdata(jsonmsg)
-               await conn.sendMsg(where, { react: { text: "📜", key: mass.key } });
+               await conn.sendMessage(where, { react: { text: "📜", key: mass.key } });
             
              await sleep(1*1000)
             } else {
@@ -299,14 +299,14 @@ async function sea(conn,chat,mek,q,reply,type,remotejids){
         const where = mek?.key?.remoteJid
         const mydata = await getBuffer(img);
         
-          const mass = await conn.sendMsg(where, { image: mydata, caption: cot }, { quoted: mek });
+          const mass = await conn.sendMessage(where, { image: mydata, caption: cot }, { quoted: mek });
           const jsonmsg = {
             key : mass.key,
             numrep,
             method : 'nondecimal'
            }
            await storenumrepdata(jsonmsg)
-           await conn.sendMsg(where, { react: { text: "📜", key: mass.key } });
+           await conn.sendMessage(where, { react: { text: "📜", key: mass.key } });
         
         await sleep(1*1000)
         return true;
@@ -373,14 +373,14 @@ async function sea(conn,chat,mek,q,reply,type,remotejids){
          const where = mek?.key?.remoteJid
          const mydata = await getBuffer(selectedimg);
         
-           const mass = await conn.sendMsg(where, { image: mydata, caption: cot }, { quoted: mek });
+           const mass = await conn.sendMessage(where, { image: mydata, caption: cot }, { quoted: mek });
            const jsonmsg = {
             key : mass.key,
             numrep,
             method : 'nondecimal'
            }
            await storenumrepdata(jsonmsg)
-           await conn.sendMsg(where, { react: { text: "📜", key: mass.key } });
+           await conn.sendMessage(where, { react: { text: "📜", key: mass.key } });
         
          await sleep(1*1000)
          return true;
@@ -417,13 +417,13 @@ async function sea(conn,chat,mek,q,reply,type,remotejids){
       const img = showInfo?.imageUrl  ? showInfo.imageUrl : mg.imagenotfound;
       const where = mek?.key?.remoteJid
       if(chat?.length === 1 && chat[0] === where){
-        const mass = await conn.sendMsg(where , { image: {url : img}, caption: output }, { quoted: mek });
-        await conn.sendMsg(where, { react: { text: "📽️", key: mass.key } });
+        const mass = await conn.sendMessage(where , { image: {url : img}, caption: output }, { quoted: mek });
+        await conn.sendMessage(where, { react: { text: "📽️", key: mass.key } });
         
       }else{
         await Promise.all(chat.map(async (c) => {
-          const mass = await conn.sendMsg(c , { image: {url : img}, caption: output });
-           await conn.sendMsg(c, { react: { text: "📽️", key: mass.key } });
+          const mass = await conn.sendMessage(c , { image: {url : img}, caption: output });
+           await conn.sendMessage(c, { react: { text: "📽️", key: mass.key } });
           
       }));
       }
@@ -450,13 +450,13 @@ async function sea(conn,chat,mek,q,reply,type,remotejids){
       const img = movie?.mainDetails?.imageUrl ? movie.mainDetails.imageUrl : mg.imagenotfound;
       const where = mek?.key?.remoteJid
       if(chat?.length === 1 && chat[0] === where){
-        const mass = await conn.sendMsg(where , { image: {url : img}, caption: output }, { quoted: mek });
-        await conn.sendMsg(where, { react: { text: "📽️", key: mass.key } });
+        const mass = await conn.sendMessage(where , { image: {url : img}, caption: output }, { quoted: mek });
+        await conn.sendMessage(where, { react: { text: "📽️", key: mass.key } });
         
       }else{
         await Promise.all(chat.map(async (c) => {
-          const mass = await conn.sendMsg(c , { image: {url : img}, caption: output });
-           await conn.sendMsg(c, { react: { text: "📽️", key: mass.key } });
+          const mass = await conn.sendMessage(c , { image: {url : img}, caption: output });
+           await conn.sendMessage(c, { react: { text: "📽️", key: mass.key } });
           
       }));
       }
@@ -482,13 +482,13 @@ async function sea(conn,chat,mek,q,reply,type,remotejids){
       
       const where = mek?.key?.remoteJid
       if(chat?.length === 1 && chat[0] === where){
-        const mass = await conn.sendMsg(where , { image: {url : img}, caption: output }, { quoted: mek });
-        await conn.sendMsg(where, { react: { text: "📽️", key: mass.key } });
+        const mass = await conn.sendMessage(where , { image: {url : img}, caption: output }, { quoted: mek });
+        await conn.sendMessage(where, { react: { text: "📽️", key: mass.key } });
         
       }else{
         await Promise.all(chat.map(async (c) => {
-          const mass = await conn.sendMsg(c , { image: {url : img}, caption: output });
-           await conn.sendMsg(c, { react: { text: "📽️", key: mass.key } });
+          const mass = await conn.sendMessage(c , { image: {url : img}, caption: output });
+           await conn.sendMessage(c, { react: { text: "📽️", key: mass.key } });
           
       }));
       }
@@ -517,13 +517,13 @@ async function sea(conn,chat,mek,q,reply,type,remotejids){
       
       const where = mek?.key?.remoteJid
       if(chat?.length === 1 && chat[0] === where){
-        const mass = await conn.sendMsg(where , { image: {url : img}, caption: output }, { quoted: mek });
-        await conn.sendMsg(where, { react: { text: "📽️", key: mass.key } });
+        const mass = await conn.sendMessage(where , { image: {url : img}, caption: output }, { quoted: mek });
+        await conn.sendMessage(where, { react: { text: "📽️", key: mass.key } });
         
       }else{
         await Promise.all(chat.map(async (c) => {
-          const mass = await conn.sendMsg(c , { image: {url : img}, caption: output });
-           await conn.sendMsg(c, { react: { text: "📽️", key: mass.key } });
+          const mass = await conn.sendMessage(c , { image: {url : img}, caption: output });
+           await conn.sendMessage(c, { react: { text: "📽️", key: mass.key } });
           
       }));
       }
@@ -581,14 +581,14 @@ async function sea(conn,chat,mek,q,reply,type,remotejids){
           const where = mek?.key?.remoteJid
           const mydata = await getBuffer(img);
          
-            const mass = await conn.sendMsg(where, { image: mydata, caption: output }, { quoted: mek });
+            const mass = await conn.sendMessage(where, { image: mydata, caption: output }, { quoted: mek });
             const jsonmsg = {
              key : mass.key,
              numrep,
              method : 'decimal'
             }
             await storenumrepdata(jsonmsg)
-            await conn.sendMsg(where, { react: { text: "📜", key: mass.key } });
+            await conn.sendMessage(where, { react: { text: "📜", key: mass.key } });
          
           await sleep(1*1000)
           return true;
@@ -653,14 +653,14 @@ async function sea(conn,chat,mek,q,reply,type,remotejids){
           const where = mek?.key?.remoteJid
           const mydata = await getBuffer(selectedimg);
          
-            const mass = await conn.sendMsg(where, { image: mydata, caption: cot }, { quoted: mek });
+            const mass = await conn.sendMessage(where, { image: mydata, caption: cot }, { quoted: mek });
             const jsonmsg = {
              key : mass.key,
              numrep,
              method : 'decimal'
             }
             await storenumrepdata(jsonmsg)
-            await conn.sendMsg(where, { react: { text: "📜", key: mass.key } });
+            await conn.sendMessage(where, { react: { text: "📜", key: mass.key } });
          
           await sleep(1*1000)
           return true;
@@ -714,8 +714,8 @@ async function sea(conn,chat,mek,q,reply,type,remotejids){
       let ext = mimeType.extension(mime) ;
       
       if(chats?.length === 1 && chats[0] === where){
-        const mass = await conn.sendMsg(where, { document: mydata, mimetype: mime, fileName: '|ᴍᴀꜱᴛᴇʀ-x-ᴄyʙᴇʀ|~'+title + '.'+ext, caption: caption }, { quoted: mek });
-        await conn.sendMsg(where, { react: { text: "📽️", key: mass.key } });
+        const mass = await conn.sendMessage(where, { document: mydata, mimetype: mime, fileName: '|ᴍᴀꜱᴛᴇʀ-x-ᴄyʙᴇʀ|~'+title + '.'+ext, caption: caption }, { quoted: mek });
+        await conn.sendMessage(where, { react: { text: "📽️", key: mass.key } });
         if(config.DOWNLOADSAPI !== ''){
          const indexNumber =  se.index
          const sen = await fetchJson(`${config.DOWNLOADSAPI}${bot}/download?index=${indexNumber}&jid=${where}&done=true&target=true&${sinsub.apikey}${config.DEVAPIKEY}`);   
@@ -723,8 +723,8 @@ async function sea(conn,chat,mek,q,reply,type,remotejids){
       }
       }else{
         await Promise.all(chats.map(async (chat) => {
-          const mass = await conn.sendMsg(chat, { document: mydata, mimetype: mime, fileName: '|ᴍᴀꜱᴛᴇʀ-x-ᴄyʙᴇʀ|~'+title + '.'+ext, caption: caption });
-           await conn.sendMsg(chat, { react: { text: "📽️", key: mass.key } });
+          const mass = await conn.sendMessage(chat, { document: mydata, mimetype: mime, fileName: '|ᴍᴀꜱᴛᴇʀ-x-ᴄyʙᴇʀ|~'+title + '.'+ext, caption: caption });
+           await conn.sendMessage(chat, { react: { text: "📽️", key: mass.key } });
            if(config.DOWNLOADSAPI !== ''){
             const indexNumber =  se.index
             const sen = await fetchJson(`${config.DOWNLOADSAPI}${bot}/download?index=${indexNumber}&jid=${chat}&done=true&target=true&${sinsub.apikey}${config.DEVAPIKEY}`);   
@@ -750,8 +750,8 @@ async function sea(conn,chat,mek,q,reply,type,remotejids){
       let ext = mimeType.extension(mime) ;
       
       if(chats?.length === 1 && chats[0] === where){
-        const mass = await conn.sendMsg(where, { document: mdata, mimetype: mime, fileName: '|ᴍᴀꜱᴛᴇʀ-x-ᴄyʙᴇʀ|~'+title + '.'+ext, caption: caption }, { quoted: mek });
-        await conn.sendMsg(where, { react: { text: "📽️", key: mass.key } });
+        const mass = await conn.sendMessage(where, { document: mdata, mimetype: mime, fileName: '|ᴍᴀꜱᴛᴇʀ-x-ᴄyʙᴇʀ|~'+title + '.'+ext, caption: caption }, { quoted: mek });
+        await conn.sendMessage(where, { react: { text: "📽️", key: mass.key } });
         if(config.DOWNLOADSAPI !== ''){
          const indexNumber =  se.index
          const sen = await fetchJson(`${config.DOWNLOADSAPI}${bot}/download?index=${indexNumber}&jid=${where}&done=true&target=true&${sinsub.apikey}${config.DEVAPIKEY}`);   
@@ -759,8 +759,8 @@ async function sea(conn,chat,mek,q,reply,type,remotejids){
       }
       }else{
           await Promise.all(chats.map(async (chat) => {
-            const mass = await conn.sendMsg(chat, { document: mdata, mimetype: mime, fileName: '|ᴍᴀꜱᴛᴇʀ-x-ᴄyʙᴇʀ|~'+title + '.'+ ext, caption: caption });
-              await conn.sendMsg(chat, { react: { text: "📽️", key: mass.key } });
+            const mass = await conn.sendMessage(chat, { document: mdata, mimetype: mime, fileName: '|ᴍᴀꜱᴛᴇʀ-x-ᴄyʙᴇʀ|~'+title + '.'+ ext, caption: caption });
+              await conn.sendMessage(chat, { react: { text: "📽️", key: mass.key } });
              if(config.DOWNLOADSAPI !== ''){
               const indexNumber =  se.index
               const sen = await fetchJson(`${config.DOWNLOADSAPI}${bot}/download?index=${indexNumber}&jid=${chat}&done=true&target=true&${sinsub.apikey}${config.DEVAPIKEY}`);   
@@ -826,14 +826,14 @@ async function sea(conn,chat,mek,q,reply,type,remotejids){
       const where = mek?.key?.remoteJid
       const mydata = await getBuffer(img);
      
-        const mass = await conn.sendMsg(where, { image: mydata, caption: cot }, { quoted: mek });
+        const mass = await conn.sendMessage(where, { image: mydata, caption: cot }, { quoted: mek });
         const jsonmsg = {
          key : mass.key,
          numrep,
          method : 'nondecimal'
         }
         await storenumrepdata(jsonmsg)
-        await conn.sendMsg(where, { react: { text: "📜", key: mass.key } });
+        await conn.sendMessage(where, { react: { text: "📜", key: mass.key } });
      
       await sleep(1*1000)
       return true;
@@ -879,14 +879,14 @@ async function sea(conn,chat,mek,q,reply,type,remotejids){
      const where = mek?.key?.remoteJid
      const mydata = await getBuffer(img);
     
-       const mass = await conn.sendMsg(where, { image: mydata, caption: cot }, { quoted: mek });
+       const mass = await conn.sendMessage(where, { image: mydata, caption: cot }, { quoted: mek });
        const jsonmsg = {
         key : mass.key,
         numrep,
         method : 'nondecimal'
        }
        await storenumrepdata(jsonmsg)
-       await conn.sendMsg(where, { react: { text: "📜", key: mass.key } });
+       await conn.sendMessage(where, { react: { text: "📜", key: mass.key } });
     
      await sleep(1*1000)
      return true; 
@@ -1239,13 +1239,13 @@ async (conn, mek, m, {from, l, quoted, body, isCmd, command, args, q, isGroup, s
             }
           images.forEach(async image => {
             if(chat?.length === 1 && chat[0] === where){
-              const mass = await conn.sendMsg(where , { image: {url : image}, caption: `${config.FOOTERNAME}` }, { quoted: mek });
-              await conn.sendMsg(where, { react: { text: "📽️", key: mass.key } });
+              const mass = await conn.sendMessage(where , { image: {url : image}, caption: `${config.FOOTERNAME}` }, { quoted: mek });
+              await conn.sendMessage(where, { react: { text: "📽️", key: mass.key } });
               
             }else{
               await Promise.all(chat.map(async (c) => {
-                const mass = await conn.sendMsg(c , { image: {url : image}, caption: `${config.FOOTERNAME}` });
-                 await conn.sendMsg(c, { react: { text: "📽️", key: mass.key } });
+                const mass = await conn.sendMessage(c , { image: {url : image}, caption: `${config.FOOTERNAME}` });
+                 await conn.sendMessage(c, { react: { text: "📽️", key: mass.key } });
                  
             }));
             }
@@ -1262,13 +1262,13 @@ async (conn, mek, m, {from, l, quoted, body, isCmd, command, args, q, isGroup, s
           
           images.forEach(async image => {
             if(chat?.length === 1 && chat[0] === where){
-              const mass = await conn.sendMsg(where , { image: {url : image.replace('/w300/','/original/')}, caption: `${config.FOOTERNAME}` }, { quoted: mek });
-              await conn.sendMsg(where, { react: { text: "📽️", key: mass.key } });
+              const mass = await conn.sendMessage(where , { image: {url : image.replace('/w300/','/original/')}, caption: `${config.FOOTERNAME}` }, { quoted: mek });
+              await conn.sendMessage(where, { react: { text: "📽️", key: mass.key } });
               
             }else{
               await Promise.all(chat.map(async (c) => {
-                const mass = await conn.sendMsg(c , { image: {url : image}, caption: `${config.FOOTERNAME}` });
-                 await conn.sendMsg(c, { react: { text: "📽️", key: mass.key } });
+                const mass = await conn.sendMessage(c , { image: {url : image}, caption: `${config.FOOTERNAME}` });
+                 await conn.sendMessage(c, { react: { text: "📽️", key: mass.key } });
                 
             }));
             }
@@ -1401,13 +1401,13 @@ async (conn, mek, m, {from, l, quoted, body, isCmd, command, args, q, isGroup, s
           `\n`+
           `> *Mᴀꜱᴛᴇʀ-X-Cyʙᴇʀ™*`
           if(chat?.length === 1 && chat[0] === where){
-            const mass = await conn.sendMsg(where , { image: {url : image}, caption: cot }, { quoted: mek });
-            await conn.sendMsg(where, { react: { text: "📽️", key: mass.key } });
+            const mass = await conn.sendMessage(where , { image: {url : image}, caption: cot }, { quoted: mek });
+            await conn.sendMessage(where, { react: { text: "📽️", key: mass.key } });
             
           }else{
             await Promise.all(chat.map(async (c) => {
-              const mass = await conn.sendMsg(c , { image: {url : image}, caption: cot });
-               await conn.sendMsg(c, { react: { text: "📽️", key: mass.key } });
+              const mass = await conn.sendMessage(c , { image: {url : image}, caption: cot });
+               await conn.sendMessage(c, { react: { text: "📽️", key: mass.key } });
                
           }));
           }
@@ -1425,14 +1425,14 @@ async (conn, mek, m, {from, l, quoted, body, isCmd, command, args, q, isGroup, s
             cot+= `${formatNumber(index+1)} *${movie.Title} - ${movie.Year}* (${movie.Type})\n`
             numrep.push(`.imdb id=${movie.imdbID} ${remotejids}`)
           })
-          const mass = await conn.sendMsg(from, { text:  cot }, { quoted: mek });
+          const mass = await conn.sendMessage(from, { text:  cot }, { quoted: mek });
           const jsonmsg = {
            key : mass.key,
            numrep,
            method : 'nondecimal'
           }
           await storenumrepdata(jsonmsg)
-          await conn.sendMsg(from, { react: { text: "📜", key: mass.key } });
+          await conn.sendMessage(from, { react: { text: "📜", key: mass.key } });
 
       }
       }
@@ -1480,15 +1480,15 @@ async (conn, mek, m, {from, l, quoted, body, isCmd, command, args, q, isGroup, s
         `*💈 File Size:* ${res.fileSize}`+`\n`+
         `*🕹️ File type:* ${res.mimetype}`)		
      if(chat?.length === 1 && chat[0] === where){
-            const mass = await conn.sendMsg(where, { document: { url: res.downloadUrl }, fileName: res.fileName, mimetype: res.mimetype }, { quoted: mek })
+            const mass = await conn.sendMessage(where, { document: { url: res.downloadUrl }, fileName: res.fileName, mimetype: res.mimetype }, { quoted: mek })
 
-            await conn.sendMsg(where, { react: { text: "📑", key: mass.key } });
+            await conn.sendMessage(where, { react: { text: "📑", key: mass.key } });
             
           }else{
             await Promise.all(chat.map(async (c) => {
-              const mass = await conn.sendMsg(c, { document: { url: res.downloadUrl }, fileName: res.fileName, mimetype: res.mimetype })
+              const mass = await conn.sendMessage(c, { document: { url: res.downloadUrl }, fileName: res.fileName, mimetype: res.mimetype })
 
-               await conn.sendMsg(c, { react: { text: "📑", key: mass.key } });
+               await conn.sendMessage(c, { react: { text: "📑", key: mass.key } });
                
           }));
           }
