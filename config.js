@@ -5,7 +5,7 @@ function convertToBool(text, fault = 'true') {
     return text === fault ? true : false;
 }
 const BOTNAME = 'MASTER-X-CYBER|-WA-BOT™';
-const FOOTERNAME = 'ᴩᴏᴡᴇʀᴇᴅ ʙʏ :*\n> *𝙼𝙰𝚂𝚃𝙴𝚁-𝚇-𝙲𝚈𝙱𝙴𝚁|-𝚆𝙰-𝙱𝙾𝚃™';
+const FOOTERNAME = '> *ᴍᴀꜱᴛᴇʀ-x-ᴄyʙᴇʀ™*';
 module.exports = {
 SESSION_ID: process.env.SESSION_ID === undefined ? 'itzcp_pair-EvNXnT6Y#HfC_ZSWT04DxxrV_gzUsSr_XPVwSfQO6QwGZ9AnMGy4' : process.env.SESSION_ID,
 BOTNAME : BOTNAME,
@@ -16,7 +16,7 @@ ALWAYS_ONLINE: process.env.ALWAYS_ONLINE === undefined ? 'false' : process.env.A
 MAX_SIZE: process.env.MAX_SIZE === undefined ? '1536': process.env.MAX_SIZE,/*add this in megabytes*/
 VERSION: '1.0.1',
 ALIVE: `> *Hey I Am Alive Now 👋*\n\n*||  How Can Help You?*\n*|| Developer:- Itzmecp & Oska*\n*|| ᴛyᴩᴇ ".ᴍᴇɴᴜ" ɢᴇᴛ ᴄᴏᴍᴍᴀɴᴅ ʟɪꜱᴛ*\n\n*${FOOTERNAME}*`,
-LOGO: `https://telegra.ph/file/0fd1f022ee7f484913bf0.jpg`,
+LOGO: `https://telegra.ph/file/0fd1f022ee7f484913bf0.jpg',
 DEVNUMBER: '94725881990',
 DEVBOT: '94725881990',
 CHANNEL: '',
