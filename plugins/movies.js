@@ -404,14 +404,12 @@ async function sea(conn,chat,mek,q,reply,type,remotejids){
       const showInfo = response.result.data.mainDetails;
       const cast= response.result.data.moviedata;
       const actorNames = cast.castDetails.cast.map(actor => actor.actor.name).join(", ");
-      const output = `*📺  _${showInfo.maintitle}_*`+`\n`+
-      `▬▬▬▬▬▬▬▬▬▬▬▬▬`+`\n`+
-      `*🔮 𝙶𝙴𝙽𝚁𝙴 : ${showInfo.genres.join(", ")}*`+`\n`+
-      `*🎗️𝙳𝙸𝚁𝙴𝙲𝚃𝙾𝚁 : ${cast.castDetails.creator.name}*`+`\n`+
-      `*🥇𝙲𝙷𝙰𝚁𝙰𝙲𝚃𝙴𝚁𝚂 : ${actorNames}*`+`\n`+
-      `━━━━━━━━━━━━━━━━━━━━━━`+`\n`+
-      `*සිංහල උපසිරස චිත්‍රපටයට ස්ථීරවම එකතු කර ඇත.*`+`\n`+
-      `━━━━━━━━━━━━━━━━━━━━━━`+`\n`+
+      const output = `☘️ *Tιтle :${showInfo.maintitle}*`+`\n`+
+      `\n`+
+      `📕 *Gᴇɴʀᴇs ➠ ${showInfo.genres.join(", ")}*`+`\n`+
+      `📖 *Sᴜʙᴛɪᴛʟᴇ ➠ Sinhala*`+`\n`+
+      `🎥 *Dɪʀᴇᴄᴛᴏʀ ➠ ${cast.castDetails.creator.name}*`+`\n`+
+      `💃 *Cᴀꜱᴛ ➠ ${actorNames}*`+`\n`+
       `\n`+
       `${config.FOOTERNAME}`;
       const img = showInfo?.imageUrl  ? showInfo.imageUrl : mg.imagenotfound;
@@ -433,17 +431,15 @@ async function sea(conn,chat,mek,q,reply,type,remotejids){
       
               const movie = response.result.data;
       const castList = movie.moviedata.cast.map(actor => `${actor.name}`).join(", ");
-      const output = `*📺  _${movie.mainDetails.maintitle}_*`+`\n`+
-      `▬▬▬▬▬▬▬▬▬▬▬▬▬`+`\n`+
-      `*🌍𝙲𝙾𝚄𝙽𝚃𝚁𝚈 : ${movie.mainDetails.country}*`+`\n`+
-      `*📆𝚁𝙴𝙻𝙴𝙰𝚂𝙴 𝙳𝙰𝚃𝙴 : ${movie.mainDetails.dateCreated}*`+`\n`+
-      `*🔮𝙶𝙴𝙽𝚁𝙴 : ${movie.mainDetails.genres.join(", ")}*`+`\n`+
-      `*⏳𝚁𝚄𝙽 𝚃𝙸𝙼𝙴 : ${convertToHoursAndMinutes(parseInt(movie.mainDetails.runtime))}*`+`\n`+
-      `*🎗️𝙳𝙸𝚁𝙴𝙲𝚃𝙾𝚁 : ${movie.moviedata.derector}*`+`\n`+
-      `*🥇𝙲𝙷𝙰𝚁𝙰𝙲𝚃𝙴𝚁𝚂 : ${castList}*`+`\n`+
-      `━━━━━━━━━━━━━━━━━━━━━━`+`\n`+
-      `*සිංහල උපසිරස චිත්‍රපටයට ස්ථීරවම එකතු කර ඇත.*`+`\n`+
-      `━━━━━━━━━━━━━━━━━━━━━━`+`\n`+
+      const output = `☘️ *Tιтle :${movie.mainDetails.maintitle}*`+`\n`+
+      `\n`+
+      `🌎 *Cᴏᴜɴᴛʀʏ ➠ ${movie.mainDetails.country}*`+`\n`+
+      `📆 *Rᴇʟᴇᴀꜱᴇ ➠ ${movie.mainDetails.dateCreated}*`+`\n`+
+      `📕 *Gᴇɴʀᴇs ➠ ${movie.mainDetails.genres.join(", ")}*`+`\n`+
+      `📖 *Sᴜʙᴛɪᴛʟᴇ ➠ Sinhala*`+`\n`+
+      `⏰ *Rᴜɴᴛɪᴍᴇ ➠ ${convertToHoursAndMinutes(parseInt(movie.mainDetails.runtime))}*`+`\n`+
+      `🎥 *Dɪʀᴇᴄᴛᴏʀ ➠ ${movie.moviedata.derector}*`+`\n`+
+      `💃 *Cᴀꜱᴛ ➠ ${castList}*`+`\n`+
       `\n`+
       `${config.FOOTERNAME}`;
       
@@ -469,13 +465,11 @@ async function sea(conn,chat,mek,q,reply,type,remotejids){
               
                         const showInfo = response;
                         const actorNames = showInfo.cast.map(actor => actor.actorName).join(", ");
-      const output = `*📺  _${showInfo.title}_*`+`\n`+
-      `▬▬▬▬▬▬▬▬▬▬▬▬▬`+`\n`+
-      `*🎗️𝙳𝙸𝚁𝙴𝙲𝚃𝙾𝚁 :${showInfo.cast[0].actorName}*`+`\n`+
-      `*🥇𝙲𝙷𝙰𝚁𝙰𝙲𝚃𝙴𝚁𝚂 : ${actorNames}*`+`\n`+
-      `━━━━━━━━━━━━━━━━━━━━━━`+`\n`+
-      `*සිංහල උපසිරස චිත්‍රපටයට ස්ථීරවම එකතු කර ඇත.*`+`\n`+
-      `━━━━━━━━━━━━━━━━━━━━━━`+`\n`+
+      const output = `☘️ *Tιтle :${showInfo.title}*`+`\n`+
+      `\n`+
+      `🎥 *Dɪʀᴇᴄᴛᴏʀ ➠ ${showInfo.cast[0].actorName}*`+`\n`+
+      `📖 *Sᴜʙᴛɪᴛʟᴇ ➠ Sinhala*`+`\n`+
+      `💃 *Cᴀꜱᴛ ➠ ${actorNames}*`+`\n`+
       `\n`+
       `${config.FOOTERNAME}`;
       const img =  showInfo?.imageURLs[0] ? config.IMAGE_ENHANCE+showInfo.imageURLs[0].replace('/w300/','/original/') : mg.imagenotfound;
@@ -500,17 +494,15 @@ async function sea(conn,chat,mek,q,reply,type,remotejids){
                   const castList = movieInfo.cast.map(actor => `${actor.actorName}`).join(", ");
                   
           const imageUrls = movieInfo.imageUrls;
-      const output = `*📺  _${movieInfo.title}_*`+`\n`+
-      `▬▬▬▬▬▬▬▬▬▬▬▬▬`+`\n`+
-      `*🌍𝙲𝙾𝚄𝙽𝚃𝚁𝚈 : ${movieInfo.country}*`+`\n`+
-      `*📆𝚁𝙴𝙻𝙴𝙰𝚂𝙴 𝙳𝙰𝚃𝙴 : ${movieInfo.date}*`+`\n`+
-      `*🔮𝙶𝙴𝙽𝚁𝙴 : ${movieInfo.genres.join(", ")}*`+`\n`+
-      `*⏳𝚁𝚄𝙽 𝚃𝙸𝙼𝙴 : ${convertToHoursAndMinutes(parseInt(movieInfo.runtime))}*`+`\n`+
-      `*🎗️𝙳𝙸𝚁𝙴𝙲𝚃𝙾𝚁 : ${movieInfo.cast[0].actorName}*`+`\n`+
-      `*🥇𝙲𝙷𝙰𝚁𝙰𝙲𝚃𝙴𝚁𝚂 : ${castList}*`+`\n`+
-      `━━━━━━━━━━━━━━━━━━━━━━`+`\n`+
-      `*සිංහල උපසිරස චිත්‍රපටයට ස්ථීරවම එකතු කර ඇත.*`+`\n`+
-      `━━━━━━━━━━━━━━━━━━━━━━`+`\n`+
+      const output = `☘️ *Tιтle :${movieInfo.title}*`+`\n`+
+      `\n`+
+      `🌎 *Cᴏᴜɴᴛʀʏ ➠ ${movieInfo.country}*`+`\n`+
+      `📆 *Rᴇʟᴇᴀꜱᴇ ➠ ${movieInfo.date}*`+`\n`+
+      `📖 *Sᴜʙᴛɪᴛʟᴇ ➠ Sinhala*`+`\n`+
+      `📕 *Gᴇɴʀᴇs ➠ ${movieInfo.genres.join(", ")}*`+`\n`+
+      `⏰ *Rᴜɴᴛɪᴍᴇ ➠ ${convertToHoursAndMinutes(parseInt(movieInfo.runtime))}*`+`\n`+
+      `🎥 *Dɪʀᴇᴄᴛᴏʀ ➠ ${movieInfo.cast[0].actorName}*`+`\n`+
+      `💃 *Cᴀꜱᴛ ➠ ${castList}*`+`\n`+
       `\n`+      
       `${config.FOOTERNAME}`;
       const img = imageUrls[0] ? config.IMAGE_ENHANCE+imageUrls[0]: mg.imagenotfound;
