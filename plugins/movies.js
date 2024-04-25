@@ -438,7 +438,7 @@ async function sea(conn,chat,mek,q,reply,type,remotejids){
       `📕 *Gᴇɴʀᴇs ➠ ${movie.mainDetails.genres.join(", ")}*`+`\n`+
       `📖 *Sᴜʙᴛɪᴛʟᴇ ➠ Sinhala*`+`\n`+
       `⏰ *Rᴜɴᴛɪᴍᴇ ➠ ${convertToHoursAndMinutes(parseInt(movie.mainDetails.runtime))}*`+`\n`+
-      `🎥 *Dɪʀᴇᴄᴛᴏʀ ➠ ${movie.moviedata.derector}*`+`\n`+
+      `\n`+
       `💃 *Cᴀꜱᴛ ➠ ${castList}*`+`\n`+
       `\n`+
       `${config.FOOTERNAME}`;
@@ -502,6 +502,7 @@ async function sea(conn,chat,mek,q,reply,type,remotejids){
       `📕 *Gᴇɴʀᴇs ➠ ${movieInfo.genres.join(", ")}*`+`\n`+
       `⏰ *Rᴜɴᴛɪᴍᴇ ➠ ${convertToHoursAndMinutes(parseInt(movieInfo.runtime))}*`+`\n`+
       `🎥 *Dɪʀᴇᴄᴛᴏʀ ➠ ${movieInfo.cast[0].actorName}*`+`\n`+
+      `\n`+
       `💃 *Cᴀꜱᴛ ➠ ${castList}*`+`\n`+
       `\n`+      
       `${config.FOOTERNAME}`;
