@@ -1047,7 +1047,6 @@ async (conn, mek, m, {from, l, quoted, body, isCmd, command, args, q, isGroup, s
           title = parts[1]? parts[1] : null
           let size;
 
-async function dlmovie(){
   if(p.startsWith(`${cine.site}`)){
     let response
     if(p.startsWith(`${cine.site}${cine.movie}`)){
@@ -1104,13 +1103,13 @@ size : ${size}
 
 ${mg.footer}`
 
-await moviesend(reply,title, caption, url, conn, mek, chat)
 
-}
 
   const sse = checkSizeAndReply(size);
   if(sse && sse===`True`){
-    await dlmovie()
+    
+await moviesend(reply,title, caption, url, conn, mek, chat)
+
     }else if(sse && sse!==`True`){
 
 return await reply(`${title} ${mg.jointitleandqualitydl}
