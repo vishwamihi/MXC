@@ -188,7 +188,7 @@ async function sea(conn,chat,mek,q,reply,type,remotejids){
       formattedText += `*╰───────────●●►*`+
       `\n`+
       `\n`
-          formattedText += `*${config.FOOTERNAME}*`
+          formattedText += `${config.FOOTERNAME}*`
           if ((moviesData && moviesData.length > 0) || (dataAfterSachibot && dataAfterSachibot.length > 0)) {
     
              const where = mek?.key?.remoteJid
@@ -260,7 +260,7 @@ async function sea(conn,chat,mek,q,reply,type,remotejids){
           numrep.push(`.dlmovie ${download.link} | ${download.quality} | ${download.size} ${remotejids}`)
           });
           cot += `\n`+
-          `*${config.FOOTERNAME}*`; 
+          `${config.FOOTERNAME}*`; 
         const where = mek?.key?.remoteJid
         const mydata = await getBuffer(img);
         
