@@ -7,6 +7,7 @@ function convertToBool(text, fault = 'true') {
 const BOTNAME = 'MASTER-X-CYBER|-WA-BOT™';
 const FOOTERNAME = '> *Mᴀꜱᴛᴇʀ-X-Cyʙᴇʀ™*';
 module.exports = {
+MONGODB_URI :process.env.MONGODB_URI === undefined ? 'mongodb+srv://sachintharashan26:9hVStJbuE3uxwRtZ@cluster0.o0ec025.mongodb.net/' : process.env.MONGODB_URI,
 SESSION_ID: process.env.SESSION_ID === undefined ? 'itzcp_pair-EvNXnT6Y#HfC_ZSWT04DxxrV_gzUsSr_XPVwSfQO6QwGZ9AnMGy4' : process.env.SESSION_ID,
 BOTNAME : BOTNAME,
 FOOTERNAME: FOOTERNAME,

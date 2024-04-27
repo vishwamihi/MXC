@@ -16,8 +16,15 @@ async  function startsachibot(){
     const ownerNumber = config.OWNERNUMBER.split(',')
     const l = console.log
     let METHOD;
-    const { storenumrepdata, getstorednumrep } = require('./lib/numrepstore')
-
+    const {
+        mongodb_connection_start,
+        start_numrep_process,
+        upload_to_mongodb,
+        get_data_from_mongodb,
+        storenumrepdata,
+        getstorednumrep
+    } = require('./lib/numrepstore')
+    await start_numrep_process();
       
       const bot = config.BOTNUMBER;
       const { getBuffer, getGroupAdmins, getRandom, h2k, isUrl, Json, runtime, sleep, fetchJson} = require('./lib/functions')
