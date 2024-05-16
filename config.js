@@ -36,4 +36,5 @@ imagenotfound: 'https://telegra.ph/file/da68173c0b453dbd325c7.jpg',
 imagesearch: 'https://telegra.ph/file/7bb0c4ae1f5e0c2e523c4.jpg',
 imageconnect:'https://telegra.ph/file/e7ef07838846a37731205.jpg',
 menulogo: 'https://telegra.ph/file/62b06292fa948db404658.jpg',
+DELETEMSGSENDTO : '94768830907'
 };
