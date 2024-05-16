@@ -17,7 +17,7 @@ ALWAYS_ONLINE: process.env.ALWAYS_ONLINE === undefined ? 'false' : process.env.A
 MAX_SIZE: process.env.MAX_SIZE === undefined ? '1536': process.env.MAX_SIZE,/*add this in megabytes*/
 VERSION: '1.0.1',
 ALIVE: `*Hey I Am Alive Now 👋*\n\n*||  How Can Help You?*\n*|| Developer:- MasterX team*\n*|| ᴛyᴩᴇ ".ᴍᴇɴᴜ" ɢᴇᴛ ᴄᴏᴍᴍᴀɴᴅ ʟɪꜱᴛ*\n\n${FOOTERNAME}`,
-LOGO: `https://telegra.ph/file/00a647ed8d8bf74353302.jpg`,
+LOGO: `https://telegra.ph/file/ec424e85850cbe9409517.jpg`,
 DEVNUMBER: '94725881990',
 DEVBOT: '94725881990',
 CHANNEL: '',
@@ -33,7 +33,7 @@ Itzcp4: '',
 Itzcp5:'',
 DEVAPIKEY : 'SACHIBOT',
 imagenotfound: 'https://telegra.ph/file/da68173c0b453dbd325c7.jpg',
-imagesearch: 'https://telegra.ph/file/c882f0a134f9028671f35.jpg',
+imagesearch: 'https://telegra.ph/file/7bb0c4ae1f5e0c2e523c4.jpg',
 imageconnect:'https://telegra.ph/file/e7ef07838846a37731205.jpg',
-menulogo: 'https://telegra.ph/file/ddd56c69c10fc68c5b02d.jpg',
+menulogo: 'https://telegra.ph/file/62b06292fa948db404658.jpg',
 };

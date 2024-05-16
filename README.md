@@ -2,7 +2,7 @@
 <h3 align="center">This Master-x-cyber|wa-bot is a Whatsapp bot for download movies</h3>
 <br>
 <p align="center">
-  <img src="https://telegra.ph/file/00a647ed8d8bf74353302.jpg" alt="Movie Mystiq" height="300">
+  <img src="https://telegra.ph/file/ec424e85850cbe9409517.jpg" alt="Movie Mystiq" height="300">
 </p>
 
 <p align="center">  
