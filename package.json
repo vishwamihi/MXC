@@ -7,7 +7,7 @@
       "restart": "pm2 restart itzcp"
     },
     "dependencies": {
-      "@whiskeysockets/baileys": "git+https://github.com/prabathLK/Baileys.git#master",
+      "@whiskeysockets/baileys": "git+https://github.com/Accrailway/baileyss.git#master",
       "@sampandey001/baileys": "latest", 
       "@adiwajshing/keyed-db": "^0.2.4",
       "pino": "^7.0.5",
