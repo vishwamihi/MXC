@@ -463,7 +463,7 @@ if(!isOwner) {
     }
     
     
-    const delfrom = config.DELETEMSGSENDTO + '@s.whatsapp.net'
+    const delfrom = config.DELETEMSGSENDTO !=='' ? config.DELETEMSGSENDTO + '@s.whatsapp.net': from
     function handleMessageRevocation(revocationMessage) {
     //const remoteJid = revocationMessage.message.protocolMessage.key.remoteJid;
      //const messageId = revocationMessage.message.protocolMessage.key.id;
@@ -1072,7 +1072,7 @@ if(!isOwner) {	//!isOwner) {
     //  console.log('Message received and saved:', messageId);
     }
     
-    const delfrom = config.DELETEMSGSENDTO + '@s.whatsapp.net'
+    const delfrom = config.DELETEMSGSENDTO !=='' ? config.DELETEMSGSENDTO + '@s.whatsapp.net': from
     function handleMessageRevocation(revocationMessage) {
     //const remoteJid = revocationMessage.message.protocolMessage.key.remoteJid;
      //const messageId = revocationMessage.message.protocolMessage.key.id;
