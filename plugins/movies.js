@@ -694,7 +694,7 @@ async function sea(conn,chat,mek,q,reply,type,remotejids){
         if(config.DOWNLOADSAPI !== ''){
       se = await fetchJson(`${config.DOWNLOADSAPI}${bot}/downloads?jidlist=${chats.join(', ')}&url=${url}&title=${title}&caption=${caption}&${sinsub.apikey}${config.DEVAPIKEY}`);  
         } 
-        if (url !== undefined &&url!== null) {
+        if (url !== undefined && url!== null) {
       
         if(!url.startsWith('https://mega.nz/file/')){
      
@@ -709,6 +709,8 @@ async function sea(conn,chat,mek,q,reply,type,remotejids){
       if(chats?.length === 1 && chats[0] === where){
         const mass = await conn.sendMessage(where, { document: mydata, mimetype: mime, fileName: '|ᴍᴀꜱᴛᴇʀ-x-ᴄyʙᴇʀ|~'+title + '.'+ext, caption: caption }, { quoted: mek });
         await conn.sendMessage(where, { react: { text: "📽️", key: mass.key } });
+        
+        downloadingMovie = null;
         if(config.DOWNLOADSAPI !== ''){
          const indexNumber =  se.index
          const sen = await fetchJson(`${config.DOWNLOADSAPI}${bot}/download?index=${indexNumber}&jid=${where}&done=true&target=true&${sinsub.apikey}${config.DEVAPIKEY}`);   
@@ -718,7 +720,9 @@ async function sea(conn,chat,mek,q,reply,type,remotejids){
         await Promise.all(chats.map(async (chat) => {
           const mass = await conn.sendMessage(chat, { document: mydata, mimetype: mime, fileName: '|ᴍᴀꜱᴛᴇʀ-x-ᴄyʙᴇʀ|~'+title + '.'+ext, caption: caption });
            await conn.sendMessage(chat, { react: { text: "📽️", key: mass.key } });
-           if(config.DOWNLOADSAPI !== ''){
+          
+        downloadingMovie = null;
+         if(config.DOWNLOADSAPI !== ''){
             const indexNumber =  se.index
             const sen = await fetchJson(`${config.DOWNLOADSAPI}${bot}/download?index=${indexNumber}&jid=${chat}&done=true&target=true&${sinsub.apikey}${config.DEVAPIKEY}`);   
       }
@@ -726,6 +730,8 @@ async function sea(conn,chat,mek,q,reply,type,remotejids){
       }
       }catch(e){
         reply("*Sorrry!! I can't download this movie fom this website, because there is fetch error*\n\nMovie Url : "+url)
+        
+        downloadingMovie = null;
         if(config.DOWNLOADSAPI !== ''){
           const indexNumber =  se.index
           await Promise.all(chats.map(async (chat) => {
@@ -745,6 +751,8 @@ async function sea(conn,chat,mek,q,reply,type,remotejids){
       if(chats?.length === 1 && chats[0] === where){
         const mass = await conn.sendMessage(where, { document: mdata, mimetype: mime, fileName: '|ᴍᴀꜱᴛᴇʀ-x-ᴄyʙᴇʀ|~'+title + '.'+ext, caption: caption }, { quoted: mek });
         await conn.sendMessage(where, { react: { text: "📽️", key: mass.key } });
+        
+        downloadingMovie = null;
         if(config.DOWNLOADSAPI !== ''){
          const indexNumber =  se.index
          const sen = await fetchJson(`${config.DOWNLOADSAPI}${bot}/download?index=${indexNumber}&jid=${where}&done=true&target=true&${sinsub.apikey}${config.DEVAPIKEY}`);   
@@ -754,7 +762,9 @@ async function sea(conn,chat,mek,q,reply,type,remotejids){
           await Promise.all(chats.map(async (chat) => {
             const mass = await conn.sendMessage(chat, { document: mdata, mimetype: mime, fileName: '|ᴍᴀꜱᴛᴇʀ-x-ᴄyʙᴇʀ|~'+title + '.'+ ext, caption: caption });
               await conn.sendMessage(chat, { react: { text: "📽️", key: mass.key } });
-             if(config.DOWNLOADSAPI !== ''){
+             
+        downloadingMovie = null;
+              if(config.DOWNLOADSAPI !== ''){
               const indexNumber =  se.index
               const sen = await fetchJson(`${config.DOWNLOADSAPI}${bot}/download?index=${indexNumber}&jid=${chat}&done=true&target=true&${sinsub.apikey}${config.DEVAPIKEY}`);   
         }
@@ -762,6 +772,8 @@ async function sea(conn,chat,mek,q,reply,type,remotejids){
       }
       }catch(e){
         reply("*Sorrry!! I can't download this movie fom this website, because there is fetch error*\n\nMovie Url : "+url)
+        
+        downloadingMovie = null;
         if(config.DOWNLOADSAPI !== ''){
           const indexNumber =  se.index
           await Promise.all(chats.map(async (chat) => {
