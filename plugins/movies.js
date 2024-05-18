@@ -431,14 +431,15 @@ async function sea(conn,chat,mek,q,reply,type,remotejids){
       
               const movie = response.result.data;
       const castList = movie.moviedata.cast.map(actor => `${actor.name}`).join(", ");
-      const output = `☘️ *Tιтle :${movie.mainDetails.maintitle}*`+`\n`+
-      `\n`+
-      `🌎 *Cᴏᴜɴᴛʀʏ ➠ ${movie.mainDetails.country}*`+`\n`+
-      `📆 *Rᴇʟᴇᴀꜱᴇ ➠ ${movie.mainDetails.dateCreated}*`+`\n`+
-      `📕 *Gᴇɴʀᴇs ➠ ${movie.mainDetails.genres.join(", ")}*`+`\n`+
-      `📖 *Sᴜʙᴛɪᴛʟᴇ ➠ Sinhala*`+`\n`+
-      `⏰ *Rᴜɴᴛɪᴍᴇ ➠ ${convertToHoursAndMinutes(parseInt(movie.mainDetails.runtime))}*`+`\n`+
-      `\n`+
+      const output = `☘️ *Tιтle : ${showInfo.maintitle}*`+`\n`+
+          `\n`+
+          `📆 *Rᴇʟᴇᴀꜱᴇ ➠ ${movie.mainDetails.dateCreated}*`+`\n`+
+          `⏰ *Rᴜɴᴛɪᴍᴇ ➠ ${convertToHoursAndMinutes(parseInt(movie.mainDetails.runtime))}*`+`\n`+
+          `📖 *Sᴜʙᴛɪᴛʟᴇ ➠ Sinhala*`+`\n`+
+          `🎥 *Dɪʀᴇᴄᴛᴏʀ ➠ ${cast.castDetails.creator.name}*`+`\n`+
+          `🌎 *Cᴏᴜɴᴛʀʏ ➠ ${movie.mainDetails.country}*`+`\n`+
+          `📕 *Gᴇɴʀᴇs ➠ ${movie.mainDetails.genres.join(", ")}*`+`\n`+
+          `\n`+
       `💃 *Cᴀꜱᴛ ➠ ${castList}*`+`\n`+
       `\n`+
       `${config.FOOTERNAME}`;
@@ -494,17 +495,17 @@ async function sea(conn,chat,mek,q,reply,type,remotejids){
                   const castList = movieInfo.cast.map(actor => `${actor.actorName}`).join(", ");
                   
           const imageUrls = movieInfo.imageUrls;
-      const output = `☘️ *Tιтle :${movieInfo.title}*`+`\n`+
-      `\n`+
-      `🌎 *Cᴏᴜɴᴛʀʏ ➠ ${movieInfo.country}*`+`\n`+
-      `📆 *Rᴇʟᴇᴀꜱᴇ ➠ ${movieInfo.date}*`+`\n`+
-      `📖 *Sᴜʙᴛɪᴛʟᴇ ➠ Sinhala*`+`\n`+
-      `📕 *Gᴇɴʀᴇs ➠ ${movieInfo.genres.join(", ")}*`+`\n`+
-      `⏰ *Rᴜɴᴛɪᴍᴇ ➠ ${convertToHoursAndMinutes(parseInt(movieInfo.runtime))}*`+`\n`+
-      `🎥 *Dɪʀᴇᴄᴛᴏʀ ➠ ${movieInfo.cast[0].actorName}*`+`\n`+
-      `\n`+
+      const output = `☘️ *Tιтle : ${showInfo.maintitle}*`+`\n`+
+          `\n`+
+          `📆 *Rᴇʟᴇᴀꜱᴇ ➠ ${movie.mainDetails.dateCreated}*`+`\n`+
+          `⏰ *Rᴜɴᴛɪᴍᴇ ➠ ${convertToHoursAndMinutes(parseInt(movie.mainDetails.runtime))}*`+`\n`+
+          `📖 *Sᴜʙᴛɪᴛʟᴇ ➠ Sinhala*`+`\n`+
+          `🎥 *Dɪʀᴇᴄᴛᴏʀ ➠ ${cast.castDetails.creator.name}*`+`\n`+
+          `🌎 *Cᴏᴜɴᴛʀʏ ➠ ${movie.mainDetails.country}*`+`\n`+
+          `📕 *Gᴇɴʀᴇs ➠ ${movie.mainDetails.genres.join(", ")}*`+`\n`+
+          `\n`+
       `💃 *Cᴀꜱᴛ ➠ ${castList}*`+`\n`+
-      `\n`+      
+      `\n`+
       `${config.FOOTERNAME}`;
       const img = imageUrls[0] ? config.IMAGE_ENHANCE+imageUrls[0]: mg.imagenotfound;
       
